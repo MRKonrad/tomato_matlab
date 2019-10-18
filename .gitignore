@@ -1,1 +1,4 @@
 .DS_Store
+Tomato
+cmake-build-*
+.idea
