@@ -1,10 +1,10 @@
 language: cpp
-# group: travis_latest
+group: travis_latest
 
 addons:
   apt:
     packages:
-    - octave
+      - octave
 
 matrix:
   include:
@@ -12,10 +12,12 @@ matrix:
     - os: windows
       language: sh
       before_install:
-      - choco install octave.portable
+        - choco install octave.portable
+        # - choco install octave
     - os: osx
       before_install:
-      - brew install octave > /dev/null
+      -  brew install octave > /dev/null
 
 script:
-- octave-cli playground.m
+  - octave-cli playground.m
+  # - octave-cli playground.m
