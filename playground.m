@@ -5,4 +5,4 @@
 clear
 close all
 
-disp("playground")
+x = [1,2,3]
