@@ -18,9 +18,9 @@ matrix:
       -  brew install octave > /dev/null
 
 script:
-  - octave --no-gui --eval playground.m
+#  - octave --no-gui --eval playground.m
   - octave-cli ${TRAVIS_BUILD_DIR}/playground.m
-  # - octave-cli playground.m
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then C:\ProgramData\chocolatey\bin\octave.exe ${TRAVIS_BUILD_DIR}/playground.m ; fi
   - mkdir build
   - cd build
   - cmake ..

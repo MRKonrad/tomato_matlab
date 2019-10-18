@@ -19,5 +19,7 @@ if (NOT EXISTS ${PROJECT_SOURCE_DIR}//Tomato//TomatoLib.zip)
     list(GET status 1 status_string)
 endif()
 
+execute_process( COMMAND dir "${PROJECT_SOURCE_DIR}//Tomato//"
+        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}//Tomato//)
 execute_process( COMMAND cmake -E tar xzf "${PROJECT_SOURCE_DIR}//Tomato//TomatoLib.zip"
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}//Tomato//)
