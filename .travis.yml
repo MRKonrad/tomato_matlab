@@ -13,14 +13,13 @@ matrix:
       language: sh
       before_install:
          - choco install octave.portable
-#        - choco install octave
     - os: osx
       before_install:
       -  brew install octave > /dev/null
 
 script:
   - octave --no-gui --eval playground.m
-  - octave-cli playground.m
+  - octave-cli ${TRAVIS_BUILD_DIR}/playground.m
   # - octave-cli playground.m
   - mkdir build
   - cd build
