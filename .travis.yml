@@ -25,6 +25,9 @@ matrix:
 
 script:
 #  - octave --no-gui --eval playground.m
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ls choco list --local-only ; fi
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ls choco list --local-only octave; fi
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ls choco search octave; fi
   - dir ${TRAVIS_BUILD_DIR}
   - octave-cli playground.m
   - mkdir build

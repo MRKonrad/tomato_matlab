@@ -4,7 +4,7 @@ project(Tomato_matlab)
 set(CMAKE_MACOSX_RPATH 1)
 
 include(cmake/tomato_download.cmake)
-include(cmake/octave_download.cmake)
+#include(cmake/octave_download.cmake)
 
 # OCTAVE
 set(OCTAVE_LOCATION_HINTS

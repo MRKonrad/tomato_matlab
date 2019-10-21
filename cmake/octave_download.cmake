@@ -14,7 +14,12 @@ if (WIN32)
     execute_process( COMMAND dir "${PROJECT_SOURCE_DIR}/octave/"
             WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/octave/)
     execute_process(COMMAND cmake -E tar xzf "${PROJECT_SOURCE_DIR}/octave/octave.zip"
-        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/octave/)
-    execute_process( COMMAND dir "${PROJECT_SOURCE_DIR}/octave/"
+            WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/octave/
+            RESULT_VARIABLE retcode)
+    if(NOT "${retcode}" STREQUAL "0")
+        message(FATAL_ERROR "Fatal error running OCTAVE_DOWNLOAD.")
+    endif()
+
+execute_process( COMMAND dir "${PROJECT_SOURCE_DIR}/octave/"
             WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/octave/)
 endif()
