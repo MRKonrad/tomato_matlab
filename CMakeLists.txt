@@ -6,7 +6,11 @@ set(CMAKE_MACOSX_RPATH 1)
 include(cmake/tomato_download.cmake)
 
 # OCTAVE
-set(OCTAVE_LOCATION_HINTS /usr/local/Cellar/octave/5.1.0_6/lib/octave/5.1.0/ /usr/lib/x86_64-linux-gnu/octave)
+set(OCTAVE_LOCATION_HINTS
+        /usr/local/Cellar/octave/5.1.0_6/lib/octave/5.1.0/
+        /usr/lib/x86_64-linux-gnu/octave
+        /usr/lib/x86_64-linux-gnu/octave/4.0.0
+        /usr/lib/x86_64-linux-gnu/octave/4.0.0/oct)
 find_library(octave NAMES octave HINTS ${OCTAVE_LOCATION_HINTS})
 find_library(octinterp NAMES octinterp HINTS ${OCTAVE_LOCATION_HINTS})
 #find_library(freetype NAMES freetype HINTS ${OCTAVE_LOCATION_HINTS})
