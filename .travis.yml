@@ -20,12 +20,12 @@ matrix:
     - os: linux
       before_install:
       - dpkg -L octave
-      - find / -name "liboctave.so"
-      - find / -name "liboctinterp.so"
+#      - find / -name "liboctave.so"
+#      - find / -name "liboctinterp.so"
 
 script:
 #  - octave --no-gui --eval playground.m
-#  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then C:\ProgramData\chocolatey\bin\octave.exe ${TRAVIS_BUILD_DIR}/playground.m ; fi
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ${TRAVIS_BUILD_DIR}/octave/mingw64/bin/octave-cli.exe ${TRAVIS_BUILD_DIR}/playground.m ; fi
   - octave-cli ${TRAVIS_BUILD_DIR}/playground.m
   - mkdir build
   - cd build
