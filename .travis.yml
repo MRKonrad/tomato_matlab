@@ -26,11 +26,15 @@ matrix:
 script:
 #  - octave --no-gui --eval playground.m
   - dir ${TRAVIS_BUILD_DIR}
-  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ${TRAVIS_BUILD_DIR}/octave/mingw64/bin/octave-cli.exe ${TRAVIS_BUILD_DIR}\playground.m ; fi
-  - octave-cli ${TRAVIS_BUILD_DIR}/playground.m
+  - octave-cli playground.m
   - mkdir build
   - cd build
   - cmake ..
   - cmake --build . --config RELEASE
   - ls
   - octave --no-gui --eval playground_mex # octave-cli not working if mex is passed as an argument
+  - cd ${TRAVIS_BUILD_DIR}
+  - ls
+  - ls octave
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ${TRAVIS_BUILD_DIR}/octave/mingw64/bin/octave-cli.exe ${TRAVIS_BUILD_DIR}\playground.m ; fi
+  - ls /usr/include/

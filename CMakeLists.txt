@@ -24,7 +24,7 @@ find_library(octinterp NAMES octinterp HINTS ${OCTAVE_LOCATION_HINTS})
 set(OCTAVELIBS ${octave} ${octinterp} ${freetype})
 message(${OCTAVELIBS})
 include_directories(/usr/local/Cellar/octave/5.1.0_6/include/octave-5.1.0/octave/)
-include_directories(/usr/include/octave-4.2.2/octave/)
+include_directories(/usr/include/octave-4.0.0/octave/)
 
 find_library(TomatoLib NAMES TomatoLib HINTS
         ${PROJECT_SOURCE_DIR}/Tomato/lib_shared
