@@ -11,13 +11,13 @@ matrix:
     - os: windows
       language: sh
       before_install:
-         - choco install octave.portable
+      - choco install octave.portable
     - os: osx
       before_install:
       -  brew install octave > /dev/null
     - os: linux
       before_install:
-      - apt-file list octave
+      - dpkg -L octave
 
 script:
 #  - octave --no-gui --eval playground.m
