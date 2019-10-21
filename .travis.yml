@@ -5,14 +5,15 @@ addons:
   apt:
     packages:
       - octave
+      - liboctave-dev
 
 matrix:
   include:
     - os: windows
-      language: sh
-      before_install:
+#      language: sh
+#      before_install:
 #      - choco install octave.portable
-      - choco install octave.install
+#      - choco install octave.install
     - os: osx
       before_install:
       -  brew install octave > /dev/null

@@ -4,13 +4,19 @@ project(Tomato_matlab)
 set(CMAKE_MACOSX_RPATH 1)
 
 include(cmake/tomato_download.cmake)
+include(cmake/octave_download.cmake)
 
 # OCTAVE
 set(OCTAVE_LOCATION_HINTS
         /usr/local/Cellar/octave/5.1.0_6/lib/octave/5.1.0/
+        /usr/lib/x86_64-linux-gnu/
         /usr/lib/x86_64-linux-gnu/octave
         /usr/lib/x86_64-linux-gnu/octave/4.0.0
-        /usr/lib/x86_64-linux-gnu/octave/4.0.0/oct)
+        /usr/lib/x86_64-linux-gnu/octave/4.0.0/oct
+        /usr/lib64/
+        ${PROJECT_SOURCE_DIR}/octave/mingw64/
+        ${PROJECT_SOURCE_DIR}/octave/mingw64/bin
+        ${PROJECT_SOURCE_DIR}/octave/mingw64/lib)
 find_library(octave NAMES octave HINTS ${OCTAVE_LOCATION_HINTS})
 find_library(octinterp NAMES octinterp HINTS ${OCTAVE_LOCATION_HINTS})
 #find_library(freetype NAMES freetype HINTS ${OCTAVE_LOCATION_HINTS})
