@@ -25,7 +25,8 @@ matrix:
 
 script:
 #  - octave --no-gui --eval playground.m
-  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ${TRAVIS_BUILD_DIR}/octave/mingw64/bin/octave-cli.exe ${TRAVIS_BUILD_DIR}/playground.m ; fi
+  - dir ${TRAVIS_BUILD_DIR}
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ${TRAVIS_BUILD_DIR}/octave/mingw64/bin/octave-cli.exe ${TRAVIS_BUILD_DIR}\playground.m ; fi
   - octave-cli ${TRAVIS_BUILD_DIR}/playground.m
   - mkdir build
   - cd build
