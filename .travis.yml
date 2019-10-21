@@ -10,9 +10,9 @@ addons:
 matrix:
   include:
     - os: windows
-#      language: sh
-#      before_install:
-#      - choco install octave.portable
+      language: sh
+      before_install:
+      - choco install octave.portable
 #      - choco install octave.install
     - os: osx
       before_install:
@@ -36,5 +36,6 @@ script:
   - cd ${TRAVIS_BUILD_DIR}
   - ls
   - ls octave
-  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ${TRAVIS_BUILD_DIR}/octave/mingw64/bin/octave-cli.exe ${TRAVIS_BUILD_DIR}\playground.m ; fi
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ${TRAVIS_BUILD_DIR}/octave/mingw64/bin/octave-cli.exe ${TRAVIS_BUILD_DIR}/playground.m ; fi
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then C:/ProgramData/chocolatey/bin/octave.exe ${TRAVIS_BUILD_DIR}/playground.m ; fi
   - ls /usr/include/
