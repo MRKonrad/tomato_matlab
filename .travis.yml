@@ -19,6 +19,8 @@ matrix:
     - os: linux
       before_install:
       - dpkg -L octave
+      - find / -name "liboctave.so"
+      - find / -name "liboctinterp.so"
 
 script:
 #  - octave --no-gui --eval playground.m
@@ -29,4 +31,4 @@ script:
   - cmake ..
   - cmake --build . --config RELEASE
   - ls
-  - octave --no-gui --eval playground_mex.mex # octave-cli not working if mex is passed as an argument
+  - octave --no-gui --eval playground_mex # octave-cli not working if mex is passed as an argument
