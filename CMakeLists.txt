@@ -16,7 +16,8 @@ set(OCTAVE_LOCATION_HINTS
         /usr/lib64/
         ${PROJECT_SOURCE_DIR}/octave/mingw64/
         ${PROJECT_SOURCE_DIR}/octave/mingw64/bin
-        ${PROJECT_SOURCE_DIR}/octave/mingw64/lib)
+        ${PROJECT_SOURCE_DIR}/octave/mingw64/lib
+        C:/ProgramData/chocolatey/lib/octave.portable/tools/octave/bin/mingw64/bin)
 find_library(octave NAMES octave HINTS ${OCTAVE_LOCATION_HINTS})
 find_library(octinterp NAMES octinterp HINTS ${OCTAVE_LOCATION_HINTS})
 #find_library(freetype NAMES freetype HINTS ${OCTAVE_LOCATION_HINTS})
@@ -25,6 +26,7 @@ set(OCTAVELIBS ${octave} ${octinterp} ${freetype})
 message(${OCTAVELIBS})
 include_directories(/usr/local/Cellar/octave/5.1.0_6/include/octave-5.1.0/octave/)
 include_directories(/usr/include/octave-4.0.0/octave/)
+include_directories(C:/ProgramData/chocolatey/lib/octave.portable/tools/octave/bin/mingw64/include)
 
 find_library(TomatoLib NAMES TomatoLib HINTS
         ${PROJECT_SOURCE_DIR}/Tomato/lib_shared
