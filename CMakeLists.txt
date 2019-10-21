@@ -8,10 +8,9 @@ include(cmake/tomato_download.cmake)
 # OCTAVE
 find_library(octave NAMES octave HINTS /usr/local/Cellar/octave/5.1.0_6/lib/octave/5.1.0/)
 find_library(octinterp NAMES octinterp HINTS /usr/local/Cellar/octave/5.1.0_6/lib/octave/5.1.0/)
-find_library(freetype NAMES freetype HINTS /usr/local/opt/freetype/lib/)
+#find_library(freetype NAMES freetype HINTS /usr/local/opt/freetype/lib/)
 
-set(OCTAVELIBS ${octave} ${octinterp} ${freetype})
-message(${octave})
+#set(OCTAVELIBS ${octave} ${octinterp} ${freetype})
 message(${OCTAVELIBS})
 include_directories(/usr/local/Cellar/octave/5.1.0_6/include/octave-5.1.0/octave/)
 

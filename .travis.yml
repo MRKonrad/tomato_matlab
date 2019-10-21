@@ -16,13 +16,16 @@ matrix:
       before_install:
       -  brew install octave > /dev/null
     - os: linux
+      before_install:
+      - apt-file list octave
 
 script:
 #  - octave --no-gui --eval playground.m
+#  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then C:\ProgramData\chocolatey\bin\octave.exe ${TRAVIS_BUILD_DIR}/playground.m ; fi
   - octave-cli ${TRAVIS_BUILD_DIR}/playground.m
-  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then C:\ProgramData\chocolatey\bin\octave.exe ${TRAVIS_BUILD_DIR}/playground.m ; fi
   - mkdir build
   - cd build
   - cmake ..
   - cmake --build . --config RELEASE
-  - octave-cli playground_mex.m
+  - ls
+  - octave-cli playground_mex.mex
