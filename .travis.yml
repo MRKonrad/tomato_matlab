@@ -27,9 +27,8 @@ script:
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then choco search octave; fi
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ls C:/ProgramData/chocolatey/lib/octave.portable/tools/ ; fi
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ls C:/ProgramData/chocolatey/lib/octave.portable/tools/octave ; fi
-  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ls C:/ProgramData/chocolatey/lib/octave.portable/tools/octave/bin ; fi
-  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ls C:/ProgramData/chocolatey/lib/octave.portable/tools/octave/bin/mingw64 ; fi
-  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ls C:/ProgramData/chocolatey/lib/octave.portable/tools/octave/bin/mingw64/bin ; fi
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ls C:/ProgramData/chocolatey/lib/octave.portable/tools/octave/mingw64 ; fi
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ls C:/ProgramData/chocolatey/lib/octave.portable/tools/octave/mingw64/bin ; fi
   - dir ${TRAVIS_BUILD_DIR}
   - octave-cli playground.m
   - mkdir build
@@ -43,5 +42,5 @@ script:
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ls octave ; fi
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ${TRAVIS_BUILD_DIR}/octave/mingw64/bin/octave-cli.exe ${TRAVIS_BUILD_DIR}/playground.m ; fi
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then C:/ProgramData/chocolatey/bin/octave.exe ${TRAVIS_BUILD_DIR}/playground.m ; fi
-  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then C:/ProgramData/chocolatey/lib/octave.portable/tools/octave/bin/mingw64/bin/octave-cli.exe ${TRAVIS_BUILD_DIR}/playground.m ; fi
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then C:/ProgramData/chocolatey/lib/octave.portable/tools/octave/mingw64/bin/octave-cli.exe ${TRAVIS_BUILD_DIR}/playground.m ; fi
   - ls /usr/include/
