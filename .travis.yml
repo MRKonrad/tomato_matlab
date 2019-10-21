@@ -28,4 +28,4 @@ script:
   - cmake ..
   - cmake --build . --config RELEASE
   - ls
-  - octave-cli playground_mex.mex
+  - octave --no-gui --eval playground_mex.mex # octave-cli not working if mex is passed as an argument
