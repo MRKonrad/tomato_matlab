@@ -25,7 +25,10 @@ set(OCTAVELIBS ${octave} ${octinterp} ${freetype})
 message(${OCTAVELIBS})
 include_directories(/usr/local/Cellar/octave/5.1.0_6/include/octave-5.1.0/octave/)
 
-find_library(TomatoLib NAMES TomatoLib HINTS ${PROJECT_SOURCE_DIR}/Tomato/lib_shared)
+find_library(TomatoLib NAMES TomatoLib HINTS
+        ${PROJECT_SOURCE_DIR}/Tomato/lib_shared
+        ${PROJECT_SOURCE_DIR}/lib_shared
+        ${PROJECT_SOURCE_DIR}/Tomato/Tomato/lib_shared)
 include_directories(${PROJECT_SOURCE_DIR}/Tomato/include)
 message(STATUS ${TomatoLib})
 
