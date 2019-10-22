@@ -4,7 +4,7 @@ project(Tomato_matlab)
 set(CMAKE_MACOSX_RPATH 1)
 
 include(cmake/tomato_download.cmake)
-#include(cmake/octave_download.cmake)
+include(cmake/octave_download.cmake)
 
 # OCTAVE
 set(OCTAVE_LOCATION_HINTS
@@ -17,6 +17,8 @@ set(OCTAVE_LOCATION_HINTS
         ${PROJECT_SOURCE_DIR}/octave-5.1.0-w64/mingw64/
         ${PROJECT_SOURCE_DIR}/octave-5.1.0-w64/mingw64/bin
         ${PROJECT_SOURCE_DIR}/octave-5.1.0-w64/mingw64/lib
+        ${PROJECT_SOURCE_DIR}/octave-5.1.0-w64/mingw64/lib/octave
+        ${PROJECT_SOURCE_DIR}/octave-5.1.0-w64/mingw64/lib/octave/5.1.0
         C:/ProgramData/chocolatey/lib/octave.portable/tools/octave/mingw64/bin
         C:/ProgramData/chocolatey/lib/octave.portable/tools/octave/mingw64/lib
         C:/ProgramData/chocolatey/lib/octave.portable/tools/octave/mingw64/lib/octave
