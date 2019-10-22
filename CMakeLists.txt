@@ -31,7 +31,7 @@ set(OCTAVELIBS ${octave} ${octinterp} ${freetype})
 message(${OCTAVELIBS})
 include_directories(/usr/local/Cellar/octave/5.1.0_6/include/octave-5.1.0/octave/)
 include_directories(/usr/include/octave-4.0.0/octave/)
-include_directories(C:/ProgramData/chocolatey/lib/octave.portable/tools/octave/bin/mingw64/include)
+include_directories(C:/ProgramData/chocolatey/lib/octave.portable/tools/octave/mingw64/include)
 
 find_library(TomatoLib NAMES TomatoLib HINTS
         ${PROJECT_SOURCE_DIR}/Tomato/lib_shared
