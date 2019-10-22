@@ -2,7 +2,7 @@ image:
   - Visual Studio 2017
 
 init:
-  - cmd: choco install octave.portable
+  - cmd: choco install octave.portable --version=5.1.0
 
 build_script:
   - echo %PATH%
@@ -14,15 +14,14 @@ build_script:
   - octave-cli playground.m
   - mkdir build
   - cd build
-  - cmake .. -G"MinGW Makefiles"
+  - cmake .. -G"MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=%APPVEYOR_BUILD_FOLDER%\install
   - dir
   - cmake --build . --config RELEASE
   - dir
   - # add sh.exe. TODO: is it needed?
   - set PATH=%PATH%;C:\Program Files\Git\usr\bin
-  - cd ..
-  - octave-cli playground2.m
 
 test_script:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - octave-cli playground2.m
+  - octave-cli playground_mex.m
+  - dir install

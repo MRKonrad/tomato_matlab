@@ -6,57 +6,37 @@ set(CMAKE_MACOSX_RPATH 1)
 #include(cmake/tomato_download.cmake)
 #include(cmake/octave_download.cmake)
 
-# OCTAVE
-# TODO: clean OCTAVE_LOCATION_HINTS
-set(OCTAVE_LOCATION_HINTS
-        /usr/local/Cellar/octave/5.1.0_6/lib/octave/5.1.0/
-        /usr/lib/x86_64-linux-gnu/
-        /usr/lib/x86_64-linux-gnu/octave
-        /usr/lib/x86_64-linux-gnu/octave/4.0.0
-        /usr/lib/x86_64-linux-gnu/octave/4.0.0/oct
-        /usr/lib64/
-        ${PROJECT_SOURCE_DIR}/octave-5.1.0-w64/mingw64/
-        ${PROJECT_SOURCE_DIR}/octave-5.1.0-w64/mingw64/bin
-        ${PROJECT_SOURCE_DIR}/octave-5.1.0-w64/mingw64/lib
-        ${PROJECT_SOURCE_DIR}/octave-5.1.0-w64/mingw64/lib/octave
-        ${PROJECT_SOURCE_DIR}/octave-5.1.0-w64/mingw64/lib/octave/5.1.0
-        C:/ProgramData/chocolatey/lib/octave.portable/tools/octave/mingw64/bin
-        C:/ProgramData/chocolatey/lib/octave.portable/tools/octave/mingw64/lib
-        C:/ProgramData/chocolatey/lib/octave.portable/tools/octave/mingw64/lib/octave
-        C:/ProgramData/chocolatey/lib/octave.portable/tools/octave/mingw64/lib/octave/5.1.0)
-find_library(octave NAMES octave octave-7 liboctave-7 HINTS ${OCTAVE_LOCATION_HINTS})
-find_library(octinterp NAMES octinterp octinterp-7 liboctinterp-7 HINTS ${OCTAVE_LOCATION_HINTS})
-#find_library(freetype NAMES freetype HINTS ${OCTAVE_LOCATION_HINTS})
-
-set(OCTAVELIBS ${octave} ${octinterp} ${freetype})
-message(${OCTAVELIBS})
-include_directories(/usr/local/Cellar/octave/5.1.0_6/include/octave-5.1.0/octave/)
-include_directories(/usr/include/octave-4.0.0/octave/)
-include_directories(C:/ProgramData/chocolatey/lib/octave.portable/tools/octave/mingw64/include/octave-5.1.0/octave/)
-
 #find_library(TomatoLib NAMES TomatoLib HINTS
 #        ${PROJECT_SOURCE_DIR}/Tomato/lib_shared
 #        ${PROJECT_SOURCE_DIR}/Tomato/lib_static)
 #include_directories(${PROJECT_SOURCE_DIR}/Tomato/include)
 #message(STATUS ${TomatoLib})
 
-#matlab_add_mex(NAME playground_mex mex mex/aaa.cpp)
-add_library(playground_mex SHARED mex/playground.cpp)
-set_target_properties(playground_mex PROPERTIES SUFFIX ".mex")
-#set_target_properties(playground_mex PROPERTIES SUFFIX ".mexmaci64")
-set_target_properties(playground_mex PROPERTIES PREFIX "")
-target_link_libraries(playground_mex ${TomatoLib} ${OCTAVELIBS})
+set(BUILD_USING_OCTAVE ON BOOL "")
+if (BUILD_USING_OCTAVE)
+    include(cmake/octave_find.cmake)
+    add_library(playground_octave_mex SHARED mex/playground.cpp)
+    set_target_properties(playground_octave_mex PROPERTIES SUFFIX ".mex")
+    #set_target_properties(playground_octave_mex PROPERTIES SUFFIX ".mexmaci64")
+    set_target_properties(playground_octave_mex PROPERTIES PREFIX "")
+    target_link_libraries(playground_octave_mex ${TomatoLib} ${OCTAVELIBS})
 
-## MATLAB
-#find_package(MATLAB REQUIRED)
-#include_directories(${Matlab_INCLUDE_DIRS})
-#
-#find_library(TomatoLib NAMES TomatoLib HINTS ${PROJECT_SOURCE_DIR}/Tomato/lib_shared)
-#include_directories(${PROJECT_SOURCE_DIR}/Tomato/include)
-#message(STATUS ${TomatoLib})
-#
-##matlab_add_mex(NAME playground_mex mex mex/aaa.cpp)
-#add_library(playground_mex SHARED mex/playground.cpp)
-#set_target_properties(playground_mex PROPERTIES SUFFIX ".mexmaci64")
-#set_target_properties(playground_mex PROPERTIES PREFIX "")
-#target_link_libraries(playground_mex ${TomatoLib} ${Matlab_MEX_LIBRARY})
+    install(TARGETS playground_octave_mex DESTINATION ${CMAKE_INSTALL_PREFIX})
+endif(BUILD_USING_OCTAVE)
+
+set(BUILD_USING_MATLAB OFF BOOL "")
+if (BUILD_USING_MATLAB)
+    find_package(MATLAB REQUIRED)
+    include_directories(${Matlab_INCLUDE_DIRS})
+
+    find_library(TomatoLib NAMES TomatoLib HINTS ${PROJECT_SOURCE_DIR}/Tomato/lib_shared)
+    include_directories(${PROJECT_SOURCE_DIR}/Tomato/include)
+    message(STATUS ${TomatoLib})
+
+    # matlab_add_mex(NAME playground_matlab_mex mex mex/aaa.cpp) # works well too
+    add_library(playground_mex SHARED mex/playground.cpp)
+    set_target_properties(playground_matlab_mex PROPERTIES SUFFIX ".mexmaci64")
+    set_target_properties(playground_matlab_mex PROPERTIES PREFIX "")
+    target_link_libraries(playground_matlab_mex ${TomatoLib} ${Matlab_MEX_LIBRARY})
+    install(TARGETS playground_matlab_mex DESTINATION ${CMAKE_INSTALL_PREFIX})
+endif(BUILD_USING_MATLAB)

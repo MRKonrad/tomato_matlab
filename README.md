@@ -35,12 +35,17 @@ dlopen(/Users/kwerys/Code/tomato_matlab/cmake-build-debug/playground_mex.mexmaci
 
 * linux - works :)
 * mac - works :)
-* windows in appveyor - octave works, compilation works, running compiled mex does not work `library open failed`
+* windows in appveyor - works :)
 * windows in travis - octave not working 
 ```
 The command "octave-cli ${TRAVIS_BUILD_DIR}/playground.m" exited with 127. 
 Cannot find file at '..\lib\octave.portable\tools\octave\bin\octave-cli.exe' (C:\ProgramData\chocolatey\lib\octave.portable\tools\octave\bin\octave-cli.exe). This usually indicates a missing or moved file.
 ```
+
+## TODO
+* Tomato shared lib that can be linked from windows 
+* Cmake install that generates all the correct matlab and octave extentions
+* Deployment 
 
 
 
