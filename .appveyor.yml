@@ -9,7 +9,8 @@ build_script:
   # remove sh.exe
   - set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
   - # add mingw https://www.appveyor.com/docs/windows-images-software/#mingw-msys-cygwin
-  - set PATH=%PATH%;C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1
+  - set PATH=%PATH%;C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw32\bin
+  - set PATH=%PATH%;C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin
   - echo %PATH%
   - octave-cli playground.m
   - mkdir build
