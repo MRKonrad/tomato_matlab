@@ -50,4 +50,3 @@ deploy:
   skip_cleanup: ON
   on:
     tags: ON
-    condition: ${DEPLOY_BUILD} == "ON" # I guess I have to pick one compiler
