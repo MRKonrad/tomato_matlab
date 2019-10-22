@@ -17,7 +17,7 @@ build_script:
   - cmake .. -G"MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=%APPVEYOR_BUILD_FOLDER%\install
   - dir
   - cmake --build . --config RELEASE
-  - cmake --build . --config INSTALL
+  - cmake --build . --config RELEASE --target install
   - dir
   - # add sh.exe. TODO: is it needed?
   - set PATH=%PATH%;C:\Program Files\Git\usr\bin
@@ -27,8 +27,14 @@ test_script:
   - octave-cli playground_mex.m
   - dir install
 
+after_build:
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - mkdir deployment
+  - 7z a tomato_matlab_Windows.zip install\* # zip
+  - copy %APPVEYOR_BUILD_FOLDER%\install\tomato_matlab_Windows.zip %APPVEYOR_BUILD_FOLDER%\deployment\tomato_matlab_Windows.zip
+
 artifacts:
-  - path: install\*.*
+  - path: deployment\*.*
 
 deploy:
   provider: GitHub
