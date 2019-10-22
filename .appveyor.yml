@@ -1,0 +1,12 @@
+image:
+  - Visual Studio 2017
+#  - ubuntu1804
+
+build: off
+
+init:
+  - cmd: choco install octave.portable
+#  - sh: sudo apt-get install -yq --no-install-suggests --no-install-recommends octave > /dev/null
+
+test_script:
+  - octave-cli playground.m
