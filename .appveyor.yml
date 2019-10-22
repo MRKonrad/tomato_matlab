@@ -5,6 +5,7 @@ init:
   - cmd: choco install octave.portable
 
 build_script:
+  - echo %PATH%
   - octave-cli playground.m
   - mkdir build
   - cd build
