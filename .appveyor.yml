@@ -8,8 +8,10 @@ build_script:
   - octave-cli playground.m
   - mkdir build
   - cd build
-  - cmake ..
+  - cmake .. -G"MinGW Makefiles"
+  - ls
   - cmake --build . --config RELEASE
+  - ls
   - octave --no-gui --eval playground_mex
 
 test_script:
