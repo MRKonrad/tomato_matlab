@@ -7,6 +7,7 @@ include(cmake/tomato_download.cmake)
 include(cmake/octave_download.cmake)
 
 # OCTAVE
+# TODO: clean OCTAVE_LOCATION_HINTS
 set(OCTAVE_LOCATION_HINTS
         /usr/local/Cellar/octave/5.1.0_6/lib/octave/5.1.0/
         /usr/lib/x86_64-linux-gnu/

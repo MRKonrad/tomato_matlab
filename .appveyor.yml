@@ -18,9 +18,9 @@ build_script:
   - dir
   - cmake --build . --config RELEASE
   - dir
-  - # add sh.exe
+  - # add sh.exe. TODO: is it needed?
   - set PATH=%PATH%;C:\Program Files\Git\usr\bin
-  - octave --no-gui --eval playground_mex
+  - octave-cli playground2.m
 
 test_script:
-  - octave --no-gui --eval playground_mex
+  - octave-cli playground2.m
