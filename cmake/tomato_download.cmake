@@ -8,11 +8,11 @@ if (APPLE)
     set(SYSTEM_NAME "osx")
 endif (APPLE)
 
-MESSAGE(STATUS "https:/github.com/MRKonrad/tomato/releases/download/v0.4/TomatoLib_v0.4_${SYSTEM_NAME}.zip")
+MESSAGE(STATUS "https:/github.com/MRKonrad/tomato/releases/download/v0.4.1/TomatoLib_v0.4.1_${SYSTEM_NAME}.zip")
 
 if (NOT EXISTS ${PROJECT_SOURCE_DIR}/Tomato/Tomato.zip)
     file(DOWNLOAD
-            "https:/github.com/MRKonrad/tomato/releases/download/v0.4/TomatoLib_v0.4_${SYSTEM_NAME}.zip"
+            "https:/github.com/MRKonrad/tomato/releases/download/v0.4.1/TomatoLib_v0.4.1_${SYSTEM_NAME}.zip"
             "${PROJECT_SOURCE_DIR}/Tomato/Tomato.zip"
             STATUS status LOG log)
     list(GET status 0 status_code)

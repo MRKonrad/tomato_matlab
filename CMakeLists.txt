@@ -7,12 +7,10 @@ set(CMAKE_MACOSX_RPATH 1)
 include(cmake/matlab_suffix_configuration.cmake)
 
 # an external library
-#include(cmake/tomato_download.cmake)
-#find_library(TomatoLib NAMES TomatoLib HINTS
-#        ${PROJECT_SOURCE_DIR}/Tomato/lib_shared
-#        ${PROJECT_SOURCE_DIR}/Tomato/lib_static)
-#include_directories(${PROJECT_SOURCE_DIR}/Tomato/include)
-#message(STATUS ${TomatoLib})
+include(cmake/tomato_download.cmake)
+find_library(TomatoLib NAMES TomatoLib HINTS ${PROJECT_SOURCE_DIR}/Tomato/lib_shared)
+include_directories(${PROJECT_SOURCE_DIR}/Tomato/include)
+message(STATUS ${TomatoLib})
 
 ##########
 # OCTAVE #
