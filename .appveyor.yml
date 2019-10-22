@@ -20,7 +20,9 @@ build_script:
   - dir
   - # add sh.exe. TODO: is it needed?
   - set PATH=%PATH%;C:\Program Files\Git\usr\bin
+  - cd ..
   - octave-cli playground2.m
 
 test_script:
+  - cd %APPVEYOR_BUILD_FOLDER%
   - octave-cli playground2.m
