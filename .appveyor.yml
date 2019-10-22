@@ -6,6 +6,8 @@ init:
 
 build_script:
   - echo %PATH%
+  - set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
+  - echo %PATH%
   - octave-cli playground.m
   - mkdir build
   - cd build
