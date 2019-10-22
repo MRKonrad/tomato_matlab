@@ -17,6 +17,7 @@ build_script:
   - cmake .. -G"MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=%APPVEYOR_BUILD_FOLDER%\install
   - dir
   - cmake --build . --config RELEASE
+  - cmake --build . --config INSTALL
   - dir
   - # add sh.exe. TODO: is it needed?
   - set PATH=%PATH%;C:\Program Files\Git\usr\bin
@@ -25,3 +26,17 @@ test_script:
   - cd %APPVEYOR_BUILD_FOLDER%
   - octave-cli playground_mex.m
   - dir install
+
+artifacts:
+  - path: install\*.*
+
+deploy:
+  provider: GitHub
+  auth_token:
+    secure: Nmbbo4JCoK5AuN1ugWmE/c8/BAXlpz8Lb7piWDcAAWnT/GFa7fwL20GbXyU9AZSn
+  draft: false
+  prerelease: false
+  force_update: true
+  on:
+    appveyor_repo_tag: true        # deploy on tag push only
+    configuration: Release

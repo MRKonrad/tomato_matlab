@@ -27,9 +27,21 @@ script:
   - cd build
   - cmake .. -DCMAKE_INSTALL_PREFIX=${TRAVIS_BUILD_DIR}/install
   - cmake --build . --config RELEASE
+  - cmake --build . --config INSTALL
   - ls
   # Testing
   - octave --no-gui --eval playground_octave_mex # octave-cli not working if mex is passed as an argument
   - cd ${TRAVIS_BUILD_DIR}
   - octave-cli playground_mex.m
   - ls install
+
+deploy:
+  provider: releases
+  api_key:
+    secure: ${GH_PERSONAL_ACCESS_TOKEN}
+  file_glob: ON
+  file: deployment/*
+  skip_cleanup: ON
+  on:
+    tags: ON
+    condition: ${DEPLOY_BUILD} == "ON" # I guess I have to pick one compiler
