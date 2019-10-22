@@ -14,10 +14,10 @@ set(OCTAVE_LOCATION_HINTS
         /usr/lib/x86_64-linux-gnu/octave/4.0.0
         /usr/lib/x86_64-linux-gnu/octave/4.0.0/oct
         /usr/lib64/
-        ${PROJECT_SOURCE_DIR}/octave/mingw64/
-        ${PROJECT_SOURCE_DIR}/octave/mingw64/bin
-        ${PROJECT_SOURCE_DIR}/octave/mingw64/lib
-        C:/ProgramData/chocolatey/lib/octave.portable/tools/octave/bin/mingw64/bin)
+        ${PROJECT_SOURCE_DIR}/octave-5.1.0-w64/mingw64/
+        ${PROJECT_SOURCE_DIR}/octave-5.1.0-w64/mingw64/bin
+        ${PROJECT_SOURCE_DIR}/octave-5.1.0-w64/mingw64/lib
+        C:/ProgramData/chocolatey/lib/octave.portable/tools/octave/mingw64/bin)
 find_library(octave NAMES octave HINTS ${OCTAVE_LOCATION_HINTS})
 find_library(octinterp NAMES octinterp HINTS ${OCTAVE_LOCATION_HINTS})
 #find_library(freetype NAMES freetype HINTS ${OCTAVE_LOCATION_HINTS})
@@ -30,8 +30,7 @@ include_directories(C:/ProgramData/chocolatey/lib/octave.portable/tools/octave/b
 
 find_library(TomatoLib NAMES TomatoLib HINTS
         ${PROJECT_SOURCE_DIR}/Tomato/lib_shared
-        ${PROJECT_SOURCE_DIR}/lib_shared
-        ${PROJECT_SOURCE_DIR}/Tomato/Tomato/lib_shared)
+        ${PROJECT_SOURCE_DIR}/Tomato/lib_static)
 include_directories(${PROJECT_SOURCE_DIR}/Tomato/include)
 message(STATUS ${TomatoLib})
 

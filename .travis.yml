@@ -10,7 +10,7 @@ addons:
 matrix:
   include:
     - os: windows
-      language: sh
+#      language: sh
       before_install:
       - choco install octave.portable
     - os: osx
