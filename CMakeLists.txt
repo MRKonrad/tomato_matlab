@@ -3,8 +3,8 @@ cmake_minimum_required(VERSION 2.8)
 project(Tomato_matlab)
 set(CMAKE_MACOSX_RPATH 1)
 
-include(cmake/tomato_download.cmake)
-include(cmake/octave_download.cmake)
+#include(cmake/tomato_download.cmake)
+#include(cmake/octave_download.cmake)
 
 # OCTAVE
 # TODO: clean OCTAVE_LOCATION_HINTS
@@ -34,11 +34,11 @@ include_directories(/usr/local/Cellar/octave/5.1.0_6/include/octave-5.1.0/octave
 include_directories(/usr/include/octave-4.0.0/octave/)
 include_directories(C:/ProgramData/chocolatey/lib/octave.portable/tools/octave/mingw64/include/octave-5.1.0/octave/)
 
-find_library(TomatoLib NAMES TomatoLib HINTS
-        ${PROJECT_SOURCE_DIR}/Tomato/lib_shared
-        ${PROJECT_SOURCE_DIR}/Tomato/lib_static)
-include_directories(${PROJECT_SOURCE_DIR}/Tomato/include)
-message(STATUS ${TomatoLib})
+#find_library(TomatoLib NAMES TomatoLib HINTS
+#        ${PROJECT_SOURCE_DIR}/Tomato/lib_shared
+#        ${PROJECT_SOURCE_DIR}/Tomato/lib_static)
+#include_directories(${PROJECT_SOURCE_DIR}/Tomato/include)
+#message(STATUS ${TomatoLib})
 
 #matlab_add_mex(NAME playground_mex mex mex/aaa.cpp)
 add_library(playground_mex SHARED mex/playground.cpp)
