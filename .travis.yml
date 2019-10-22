@@ -1,5 +1,5 @@
 language: cpp
-group: travis_latest
+#group: travis_latest
 
 addons:
   apt:
