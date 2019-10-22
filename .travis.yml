@@ -35,10 +35,11 @@ script:
   - octave-cli playground_mex.m
   - ls install
 
-after_script:
+after_success:
   - export name=tomato_matlab_${TRAVIS_OS_NAME} # just a variable
   - cd ${TRAVIS_BUILD_DIR}
   - zip -r ${name}.zip install
+  - mkdir deployment
   - cp ${name}.zip ${TRAVIS_BUILD_DIR}/deployment/
 
 deploy:
