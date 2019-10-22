@@ -16,9 +16,9 @@ build_script:
   - mkdir build
   - cd build
   - cmake .. -G"MinGW Makefiles"
-  - ls
+  - dir
   - cmake --build . --config RELEASE
-  - ls
+  - dir
   - octave --no-gui --eval playground_mex
 
 test_script:
