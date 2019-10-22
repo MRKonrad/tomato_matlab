@@ -44,8 +44,3 @@ Cannot find file at '..\lib\octave.portable\tools\octave\bin\octave-cli.exe' (C:
 
 ## TODO
 * Tomato shared lib that can be linked from windows 
-* Cmake install that generates all the correct matlab and octave extentions
-* Deployment 
-
-
-

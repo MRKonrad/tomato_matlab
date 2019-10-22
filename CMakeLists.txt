@@ -3,10 +3,11 @@ cmake_minimum_required(VERSION 2.8)
 project(Tomato_matlab)
 set(CMAKE_MACOSX_RPATH 1)
 
-#include(cmake/tomato_download.cmake)
-#include(cmake/octave_download.cmake)
+# to get correct file sufixes (mexmaci64 etc)
 include(cmake/matlab_suffix_configuration.cmake)
 
+# an external library
+#include(cmake/tomato_download.cmake)
 #find_library(TomatoLib NAMES TomatoLib HINTS
 #        ${PROJECT_SOURCE_DIR}/Tomato/lib_shared
 #        ${PROJECT_SOURCE_DIR}/Tomato/lib_static)
@@ -31,7 +32,7 @@ if (BUILD_USING_OCTAVE)
 
     ### install
     install(TARGETS playground_octave_mex DESTINATION ${CMAKE_INSTALL_PREFIX})
-    install(FILES playground_octave_mex.mex DESTINATION ${CMAKE_INSTALL_PREFIX} RENAME playground_octave_mex.${MATLAB_SUFFIX}) # the same file should be able to run with matlab
+    install(FILES ${CMAKE_BINARY_DIR}/playground_octave_mex.mex DESTINATION ${CMAKE_INSTALL_PREFIX} RENAME playground_octave_mex.${MATLAB_SUFFIX}) # the same file should be able to run with matlab
 
 endif(BUILD_USING_OCTAVE)
 
@@ -55,6 +56,6 @@ if (BUILD_USING_MATLAB)
 
     ### install
     install(TARGETS playground_matlab_mex DESTINATION ${CMAKE_INSTALL_PREFIX})
-    install(FILES playground_octave_mex.mex DESTINATION ${CMAKE_INSTALL_PREFIX} RENAME playground_octave_mex.mex) # the same file should be able to run with octave
+    install(FILES ${CMAKE_BINARY_DIR}/playground_octave_mex.${MATLAB_SUFFIX} DESTINATION ${CMAKE_INSTALL_PREFIX} RENAME playground_octave_mex.mex) # the same file should be able to run with octave
 
 endif(BUILD_USING_MATLAB)
