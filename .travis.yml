@@ -9,10 +9,11 @@ addons:
 
 matrix:
   include:
-    - os: windows
-#      language: sh
-      before_install:
-      - choco install octave.portable
+#    # windows build gives error:
+#    # Cannot find file at '..\lib\octave.portable\tools\octave\bin\octave-cli.exe' (C:\ProgramData\chocolatey\lib\octave.portable\tools\octave\bin\octave-cli.exe). This usually indicates a missing or moved file.
+#    - os: windows
+#      before_install:
+#      - choco install octave.portable
     - os: osx
       before_install:
       -  brew install octave > /dev/null
@@ -21,15 +22,6 @@ matrix:
       - dpkg -L octave
 
 script:
-#  - octave --no-gui --eval playground.m
-#  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then choco list --local-only ; fi
-#  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then choco list --local-only octave; fi
-#  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then choco search octave; fi
-#  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ls C:/ProgramData/chocolatey/lib/octave.portable/tools/ ; fi
-#  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ls C:/ProgramData/chocolatey/lib/octave.portable/tools/octave ; fi
-#  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ls C:/ProgramData/chocolatey/lib/octave.portable/tools/octave/mingw64 ; fi
-#  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ls C:/ProgramData/chocolatey/lib/octave.portable/tools/octave/mingw64/bin ; fi
-#  - dir ${TRAVIS_BUILD_DIR}
   - octave-cli playground.m
   - mkdir build
   - cd build
@@ -37,11 +29,3 @@ script:
   - cmake --build . --config RELEASE
   - ls
   - octave --no-gui --eval playground_mex # octave-cli not working if mex is passed as an argument
-#  - cd ${TRAVIS_BUILD_DIR}
-#  - ls
-#  - ls ${TRAVIS_BUILD_DIR}/Tomato/lib_shared
-#  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ls octave ; fi
-#  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ${TRAVIS_BUILD_DIR}/octave/mingw64/bin/octave-cli.exe ${TRAVIS_BUILD_DIR}/playground.m ; fi
-#  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then C:/ProgramData/chocolatey/bin/octave.exe ${TRAVIS_BUILD_DIR}/playground.m ; fi
-#  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then C:/ProgramData/chocolatey/lib/octave.portable/tools/octave/mingw64/bin/octave-cli.exe ${TRAVIS_BUILD_DIR}/playground.m ; fi
-#  - ls /usr/include/
