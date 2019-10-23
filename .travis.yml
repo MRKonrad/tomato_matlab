@@ -16,10 +16,11 @@ matrix:
 #      - choco install octave.portable
     - os: osx
       before_install:
-      -  brew install octave > /dev/null
+        -  brew update
+        -  brew install octave > /dev/null
     - os: linux
       before_install:
-      - dpkg -L octave
+        - dpkg -L octave
 
 script:
   - octave-cli playground.m
