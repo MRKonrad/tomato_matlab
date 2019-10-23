@@ -7,6 +7,17 @@ Running TOMATO (<https://github.com/MRKonrad/tomato>) in Matlab/Octave
 |[![Build Status](https://travis-ci.com/MRKonrad/tomato_matlab.svg?branch=master)](https://travis-ci.com/MRKonrad/tomato_matlab) | Mac and Linux build (Travis) |  
 |[![Build status](https://ci.appveyor.com/api/projects/status/md078r5kfj92y0f2?svg=true)](https://ci.appveyor.com/project/MRKonrad/tomato-matlab) | Windows build (Appveyor)|
 
+## Current status
+*   current version depends on funny paths to the octave library provided by brew/apt/choco as in [octave/octave_find.cmake](octave/octave_find.cmake). It would be great to cut the dependency on packet managers and to have my own octave build.
+*   linux - works :)
+*   mac - works :)
+*   windows in appveyor - works :)
+*   windows in travis - octave not working 
+```
+The command "octave-cli ${TRAVIS_BUILD_DIR}/playground.m" exited with 127. 
+Cannot find file at '..\lib\octave.portable\tools\octave\bin\octave-cli.exe' (C:\ProgramData\chocolatey\lib\octave.portable\tools\octave\bin\octave-cli.exe). This usually indicates a missing or moved file.
+```
+
 ## Issues
 *   Error 1 on macos:
 ```command
@@ -30,20 +41,6 @@ dlopen(/Users/kwerys/Code/tomato_matlab/cmake-build-debug/playground_mex.mexmaci
 *   Error 1 possible solutions: 
   * use newer matlab version
   * use older octave versions
-
-## Current status
-
-*   linux - works :)
-*   mac - works :)
-*   windows in appveyor - works :)
-*   windows in travis - octave not working 
-```
-The command "octave-cli ${TRAVIS_BUILD_DIR}/playground.m" exited with 127. 
-Cannot find file at '..\lib\octave.portable\tools\octave\bin\octave-cli.exe' (C:\ProgramData\chocolatey\lib\octave.portable\tools\octave\bin\octave-cli.exe). This usually indicates a missing or moved file.
-```
-
-## TODO
-*   Tomato shared lib that can be linked from windows 
 
 ## References
 *   <https://www.scivision.dev/windows-matlab-octave-continuous-integration/>

@@ -19,8 +19,8 @@ matrix:
         # otherwise there is an error when updating brew. TODO: remove it when brew fixes this issue
         - HOMEBREW_NO_AUTO_UPDATE=1 brew install octave > /dev/null
     - os: linux
-      before_install:
-        - dpkg -L octave
+#      before_install:
+#        - dpkg -L octave
 
 script:
   - octave-cli playground.m
@@ -35,7 +35,6 @@ script:
   - cd ${TRAVIS_BUILD_DIR}
   - octave-cli playground_mex.m
   - ls install
-  - ls /usr/local/Cellar/octave/
 
 after_success:
   - export name=tomato_matlab_${TRAVIS_OS_NAME} # just a variable
