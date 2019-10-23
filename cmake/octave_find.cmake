@@ -1,11 +1,13 @@
 # OCTAVE PATHS MACOS
 set(OCTAVE_LOCATION_HINTS ${OCTAVE_LOCATION_HINTS}
+        /usr/local/Cellar/octave/4.4.0_1/lib/octave/4.4.0/
         /usr/local/Cellar/octave/5.1.0_6/lib/octave/5.1.0/)
+include_directories(/usr/local/Cellar/octave/4.4.0_1/include/octave-4.4.0/octave/)
 include_directories(/usr/local/Cellar/octave/5.1.0_6/include/octave-5.1.0/octave/)
 
 # OCTAVE PATHS LINUX
 set(OCTAVE_LOCATION_HINTS ${OCTAVE_LOCATION_HINTS}
-        /usr/local/Cellar/octave/5.1.0_6/lib/octave/5.1.0/
+
         /usr/lib/x86_64-linux-gnu/
         /usr/lib/x86_64-linux-gnu/octave
         /usr/lib/x86_64-linux-gnu/octave/4.0.0
