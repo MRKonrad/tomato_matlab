@@ -1,5 +1,5 @@
 language: cpp
-#group: travis_latest
+group: travis_latest
 
 addons:
   apt:
@@ -16,7 +16,7 @@ matrix:
 #      - choco install octave.portable
     - os: osx
       before_install:
-        -  brew update
+#        -  brew update
         -  brew install octave > /dev/null
     - os: linux
       before_install:
