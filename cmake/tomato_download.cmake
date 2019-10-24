@@ -27,5 +27,3 @@ if (NOT EXISTS ${PROJECT_SOURCE_DIR}/Tomato/Tomato.zip)
     execute_process( COMMAND dir "${PROJECT_SOURCE_DIR}/Tomato/"
             WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/Tomato/)
 endif()
-
-

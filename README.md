@@ -18,6 +18,15 @@ The command "octave-cli ${TRAVIS_BUILD_DIR}/playground.m" exited with 127.
 Cannot find file at '..\lib\octave.portable\tools\octave\bin\octave-cli.exe' (C:\ProgramData\chocolatey\lib\octave.portable\tools\octave\bin\octave-cli.exe). This usually indicates a missing or moved file.
 ```
 
+
+## Plans
+
+*   provide seperate repo with matlab functions which will download mexes compiled in this repo using an install script. 
+Matlab downloading url:
+<https://uk.mathworks.com/help/matlab/ref/urlwrite.html>
+Matlab unzipping: <https://uk.mathworks.com/help/matlab/ref/unzip.html>
+*   move yamlmatlab to the new repo 
+
 ## Issues
 *   Error 1 on macos:
 ```command
