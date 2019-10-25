@@ -46,6 +46,7 @@ if (BUILD_USING_MATLAB)
     ### configure matlab paths
     find_package(MATLAB REQUIRED)
     include_directories(${Matlab_INCLUDE_DIRS})
+    MESSAGE(${Matlab_MEX_LIBRARY})
 
     ### add a target
     # matlab_add_mex(NAME playground_matlab_mex mex mex/playground.cpp) # works well too

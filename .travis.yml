@@ -43,11 +43,7 @@ after_success:
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then
       otool -L playground_octave_mex.mex ;
       install_name_tool -change @rpath/libTomatoLib.dylib @loader_path/libTomatoLib.dylib playground_octave_mex.mex ;
-      install_name_tool -change /usr/local/opt/octave/lib/octave/4.4.0/liboctave.5.dylib @loader_path/liboctave.dylib playground_octave_mex.mex ;
-      install_name_tool -change /usr/local/opt/octave/lib/octave/4.4.0/liboctinterp.5.dylib @loader_path/liboctinterp.dylib playground_octave_mex.mex ;
       otool -L playground_octave_mex.mex ;
-      cp /usr/local/opt/octave/lib/octave/4.4.0/liboctave.5.dylib ${TRAVIS_BUILD_DIR}/install/ ;
-      cp /usr/local/opt/octave/lib/octave/4.4.0/liboctinterp.5.dylib ${TRAVIS_BUILD_DIR}/install/ ;
     fi
   - zip -r ${name}.zip *
   - mkdir ${TRAVIS_BUILD_DIR}/deployment
