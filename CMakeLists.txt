@@ -2,15 +2,16 @@ cmake_minimum_required(VERSION 2.8)
 
 project(Tomato_matlab)
 set(CMAKE_MACOSX_RPATH 1)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON) # TODO: to command line
 
 # to get correct file sufixes (mexmaci64 etc)
 include(cmake/matlab_suffix_configuration.cmake)
 
-# an external library
-include(cmake/tomato_download.cmake)
-find_library(TomatoLib NAMES TomatoLib HINTS ${PROJECT_SOURCE_DIR}/Tomato/lib_shared)
-include_directories(${PROJECT_SOURCE_DIR}/Tomato/include)
-message(STATUS ${TomatoLib})
+## an external library
+#include(cmake/tomato_download.cmake)
+#find_library(TomatoLib NAMES TomatoLib HINTS ${PROJECT_SOURCE_DIR}/Tomato/lib_shared)
+#include_directories(${PROJECT_SOURCE_DIR}/Tomato/include)
+#message(STATUS ${TomatoLib})
 
 ##########
 # OCTAVE #
