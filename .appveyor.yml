@@ -4,6 +4,9 @@ image:
 init:
   - cmd: choco install octave.portable --version=5.1.0
 
+platform:
+  - x64
+
 configuration:
   - Release
 
@@ -17,7 +20,7 @@ build_script:
   - octave-cli playground.m
   - mkdir build
   - cd build
-  - cmake .. -G"MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=%APPVEYOR_BUILD_FOLDER%\install -DBUILD_SHARED_LIBS=ON -DBUILD_USING_OCTAVE=ON -DBUILD_USING_MATLAB=OFF
+  - cmake .. -G"MinGW Makefiles" -A%PLATFORM% -DCMAKE_INSTALL_PREFIX=%APPVEYOR_BUILD_FOLDER%\install -DBUILD_SHARED_LIBS=ON -DBUILD_USING_OCTAVE=ON -DBUILD_USING_MATLAB=OFF
   - dir
   - cmake --build . --config %CONFIGURATION%
   - cmake --build . --config %CONFIGURATION% --target install
@@ -34,7 +37,7 @@ after_test:
   - cd %APPVEYOR_BUILD_FOLDER%\install
   - 7z a tomato_matlab_Windows.zip * # zip
   - mkdir %APPVEYOR_BUILD_FOLDER%\deployment
-  - copy %APPVEYOR_BUILD_FOLDER%\install\tomato_matlab_Windows.zip %APPVEYOR_BUILD_FOLDER%\deployment\tomato_matlab_Windows_x64.zip
+  - copy %APPVEYOR_BUILD_FOLDER%\install\tomato_matlab_Windows.zip %APPVEYOR_BUILD_FOLDER%\deployment\tomato_matlab_Windows_%PLATFORM%.zip
 
 artifacts:
   - path: deployment\*.*
