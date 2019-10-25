@@ -16,7 +16,7 @@ message(STATUS ${TomatoLib})
 ### OCTAVE ###
 ##############
 
-set(BUILD_USING_OCTAVE OFF CACHE BOOL "")
+set(BUILD_USING_OCTAVE ON CACHE BOOL "")
 if (BUILD_USING_OCTAVE)
 
     ### configure octave paths
@@ -40,7 +40,7 @@ endif(BUILD_USING_OCTAVE)
 ### MATLAB ###
 ##############
 
-set(BUILD_USING_MATLAB ON CACHE BOOL "")
+set(BUILD_USING_MATLAB OFF CACHE BOOL "")
 if (BUILD_USING_MATLAB)
 
     ### configure matlab paths
