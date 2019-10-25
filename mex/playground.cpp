@@ -10,5 +10,6 @@ mexFunction (int nlhs, mxArray *plhs[],
     mexPrintf ("I have %d inputs and %d outputs\n", nrhs, nlhs);
 
     Ox::CalculatorT1Molli<double> calculator;
+    calculator.setNSamples(5);
     calculator.disp();
 }

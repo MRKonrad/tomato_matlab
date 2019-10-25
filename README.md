@@ -18,13 +18,13 @@ The command "octave-cli ${TRAVIS_BUILD_DIR}/playground.m" exited with 127.
 Cannot find file at '..\lib\octave.portable\tools\octave\bin\octave-cli.exe' (C:\ProgramData\chocolatey\lib\octave.portable\tools\octave\bin\octave-cli.exe). This usually indicates a missing or moved file.
 ```
 
-
 ## Plans
 
 *   provide seperate repo with matlab functions which will download mexes compiled in this repo using an install script. 
 Matlab downloading url:
 <https://uk.mathworks.com/help/matlab/ref/urlwrite.html>
 Matlab unzipping: <https://uk.mathworks.com/help/matlab/ref/unzip.html>
+*   provide a separate repo that testes if this solution can be used in an outside environment 
 *   move yamlmatlab to the new repo 
 
 ## Issues
@@ -48,8 +48,8 @@ dlopen(/Users/kwerys/Code/tomato_matlab/cmake-build-debug/playground_mex.mexmaci
 	/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1197.1.1)
 ```
 *   Error 1 possible solutions: 
-  * use newer matlab version
-  * use older octave versions
+  *   use newer matlab version
+  *   use older octave versions
 
 ## References
 *   <https://www.scivision.dev/windows-matlab-octave-continuous-integration/>
