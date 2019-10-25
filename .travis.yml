@@ -44,6 +44,8 @@ after_success:
   - cp ${TRAVIS_BUILD_DIR}/install/${name}.zip ${TRAVIS_BUILD_DIR}/deployment/
   - ls ${TRAVIS_BUILD_DIR}/deployment
   - ls ${TRAVIS_BUILD_DIR}/install
+  - cd ${TRAVIS_BUILD_DIR}/install
+  - otool -L playground_octave_mex.mex
   - cd ${TRAVIS_BUILD_DIR}
 
 deploy:
