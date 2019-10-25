@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 
 project(Tomato_matlab)
 set(CMAKE_MACOSX_RPATH 1)
-set(CMAKE_POSITION_INDEPENDENT_CODE ON) # TODO: to command line
+#set(CMAKE_POSITION_INDEPENDENT_CODE ON) # TODO: to command line
 
 # to get correct file sufixes (mexmaci64 etc)
 include(cmake/matlab_suffix_configuration.cmake)

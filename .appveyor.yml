@@ -17,7 +17,7 @@ build_script:
   - octave-cli playground.m
   - mkdir build
   - cd build
-  - cmake .. -G"MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=%APPVEYOR_BUILD_FOLDER%\install
+  - cmake .. -G"MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=%APPVEYOR_BUILD_FOLDER%\install -DBUILD_SHARED_LIBS=ON
   - dir
   - cmake --build . --config %CONFIGURATION%
   - cmake --build . --config %CONFIGURATION% --target install
