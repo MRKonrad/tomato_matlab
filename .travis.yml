@@ -39,7 +39,8 @@ script:
 after_success:
   - export name=tomato_matlab_${TRAVIS_OS_NAME} # just a variable
   - cd ${TRAVIS_BUILD_DIR}/install ;
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then # TODO: move it to cmake
+  # TODO: move it to cmake
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then
       otool -L playground_octave_mex.mex ;
       install_name_tool -change @rpath/libTomatoLib.dylib @loader_path/libTomatoLib.dylib playground_octave_mex.mex ;
       install_name_tool -change /usr/local/opt/octave/lib/octave/4.4.0/liboctave.5.dylib @loader_path/liboctave.dylib playground_octave_mex.mex ;
