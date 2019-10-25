@@ -13,9 +13,9 @@ include(cmake/matlab_suffix_configuration.cmake)
 #include_directories(${PROJECT_SOURCE_DIR}/Tomato/include)
 #message(STATUS ${TomatoLib})
 
-##########
-# OCTAVE #
-##########
+##############
+### OCTAVE ###
+##############
 
 set(BUILD_USING_OCTAVE ON CACHE BOOL "")
 if (BUILD_USING_OCTAVE)
@@ -24,10 +24,18 @@ if (BUILD_USING_OCTAVE)
     include(cmake/octave_find.cmake)
 
     ### add a target
-    add_library(playground_octave_mex SHARED mex/playground.cpp)
+    add_library(playground_octave_mex mex/playground.cpp)
     set_target_properties(playground_octave_mex PROPERTIES SUFFIX ".mex")
     set_target_properties(playground_octave_mex PROPERTIES PREFIX "")
     target_link_libraries(playground_octave_mex ${TomatoLib} ${OCTAVELIBS})
+
+    if (WIN32)
+        set_target_properties(playground_octave_mex PROPERTIES LINK_FLAGS "/WHOLEARCHIVE" )
+    elseif (APPLE)
+        set_target_properties(playground_octave_mex PROPERTIES LINK_FLAGS "-Wl,-all_load" )
+    else ()
+        set_target_properties(playground_octave_mex PROPERTIES LINK_FLAGS "-Wl,--whole-archive" )
+    endif ()
 
     ### install
     install(TARGETS playground_octave_mex DESTINATION ${CMAKE_INSTALL_PREFIX})
@@ -35,9 +43,9 @@ if (BUILD_USING_OCTAVE)
 
 endif(BUILD_USING_OCTAVE)
 
-##########
-# MATLAB #
-##########
+##############
+### MATLAB ###
+##############
 
 set(BUILD_USING_MATLAB OFF CACHE BOOL "")
 if (BUILD_USING_MATLAB)
@@ -48,7 +56,7 @@ if (BUILD_USING_MATLAB)
 
     ### add a target
     # matlab_add_mex(NAME playground_matlab_mex mex mex/aaa.cpp) # works well too
-    add_library(playground_mex SHARED mex/playground.cpp)
+    add_library(playground_mex mex/playground.cpp)
     set_target_properties(playground_matlab_mex PROPERTIES SUFFIX ${MATLAB_SUFFIX})
     set_target_properties(playground_matlab_mex PROPERTIES PREFIX "")
     target_link_libraries(playground_matlab_mex ${TomatoLib} ${Matlab_MEX_LIBRARY})
