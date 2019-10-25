@@ -42,6 +42,9 @@ after_success:
   - zip -r ${name}.zip *
   - mkdir ${TRAVIS_BUILD_DIR}/deployment
   - cp ${TRAVIS_BUILD_DIR}/install/${name}.zip ${TRAVIS_BUILD_DIR}/deployment/
+  - ls ${TRAVIS_BUILD_DIR}/deployment
+  - ls ${TRAVIS_BUILD_DIR}/install
+  - cd ${TRAVIS_BUILD_DIR}
 
 deploy:
   provider: releases
