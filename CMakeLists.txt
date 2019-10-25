@@ -2,16 +2,15 @@ cmake_minimum_required(VERSION 2.8)
 
 project(Tomato_matlab)
 set(CMAKE_MACOSX_RPATH 1)
-set(CMAKE_POSITION_INDEPENDENT_CODE ON) # TODO: to command line
 
 # to get correct file sufixes (mexmaci64 etc)
 include(cmake/matlab_suffix_configuration.cmake)
 
-## an external library
-#include(cmake/tomato_download.cmake)
-#find_library(TomatoLib NAMES TomatoLib HINTS ${PROJECT_SOURCE_DIR}/Tomato/lib_shared)
-#include_directories(${PROJECT_SOURCE_DIR}/Tomato/include)
-#message(STATUS ${TomatoLib})
+# an external library
+include(cmake/tomato_download.cmake)
+find_library(TomatoLib NAMES TomatoLib HINTS ${PROJECT_SOURCE_DIR}/Tomato/lib_shared)
+include_directories(${PROJECT_SOURCE_DIR}/Tomato/include)
+message(STATUS ${TomatoLib})
 
 ##############
 ### OCTAVE ###
@@ -29,17 +28,12 @@ if (BUILD_USING_OCTAVE)
     set_target_properties(playground_octave_mex PROPERTIES PREFIX "")
     target_link_libraries(playground_octave_mex ${OCTAVELIBS} ${TomatoLib} )
 
-    if (WIN32)
-        set_target_properties(playground_octave_mex PROPERTIES LINK_FLAGS "/WHOLEARCHIVE" )
-    elseif (APPLE)
-        set_target_properties(playground_octave_mex PROPERTIES LINK_FLAGS "-Wl,-all_load" )
-    else ()
-        set_target_properties(playground_octave_mex PROPERTIES LINK_FLAGS "-Wl,--whole-archive" )
-    endif ()
-
     ### install
     install(TARGETS playground_octave_mex DESTINATION ${CMAKE_INSTALL_PREFIX})
-    install(FILES ${CMAKE_BINARY_DIR}/playground_octave_mex.mex DESTINATION ${CMAKE_INSTALL_PREFIX} RENAME playground_octave_mex.${MATLAB_SUFFIX}) # the same file should be able to run with matlab
+    install(FILES ${CMAKE_BINARY_DIR}/playground_octave_mex.mex
+            DESTINATION ${CMAKE_INSTALL_PREFIX}
+            RENAME playground_octave_mex.${MATLAB_SUFFIX}) # the same file should be able to run with matlab
+    SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_RPATH}:$ORIGIN")
 
 endif(BUILD_USING_OCTAVE)
 
@@ -63,6 +57,8 @@ if (BUILD_USING_MATLAB)
 
     ### install
     install(TARGETS playground_matlab_mex DESTINATION ${CMAKE_INSTALL_PREFIX})
-    install(FILES ${CMAKE_BINARY_DIR}/playground_octave_mex.${MATLAB_SUFFIX} DESTINATION ${CMAKE_INSTALL_PREFIX} RENAME playground_octave_mex.mex) # the same file should be able to run with octave
+    install(FILES ${CMAKE_BINARY_DIR}/playground_octave_mex.${MATLAB_SUFFIX}
+            DESTINATION ${CMAKE_INSTALL_PREFIX}
+            RENAME playground_octave_mex.mex) # the same file should be able to run with octave
 
 endif(BUILD_USING_MATLAB)
