@@ -26,14 +26,13 @@ if (BUILD_USING_OCTAVE)
     add_library(playground_octave_mex mex/playground.cpp)
     set_target_properties(playground_octave_mex PROPERTIES SUFFIX ".mex")
     set_target_properties(playground_octave_mex PROPERTIES PREFIX "")
-    target_link_libraries(playground_octave_mex ${OCTAVELIBS} ${TomatoLib} )
+    target_link_libraries(playground_octave_mex ${TomatoLib} ${OCTAVELIBS})
 
     ### install
     install(TARGETS playground_octave_mex DESTINATION ${CMAKE_INSTALL_PREFIX})
     install(FILES ${CMAKE_BINARY_DIR}/playground_octave_mex.mex
             DESTINATION ${CMAKE_INSTALL_PREFIX}
             RENAME playground_octave_mex.${MATLAB_SUFFIX}) # the same file should be able to run with matlab
-    SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_RPATH}:$ORIGIN")
 
 endif(BUILD_USING_OCTAVE)
 
@@ -53,7 +52,7 @@ if (BUILD_USING_MATLAB)
     add_library(playground_mex mex/playground.cpp)
     set_target_properties(playground_matlab_mex PROPERTIES SUFFIX ${MATLAB_SUFFIX})
     set_target_properties(playground_matlab_mex PROPERTIES PREFIX "")
-    target_link_libraries(playground_matlab_mex ${Matlab_MEX_LIBRARY} ${TomatoLib} )
+    target_link_libraries(playground_matlab_mex  ${TomatoLib} ${OCTAVELIBS})
 
     ### install
     install(TARGETS playground_matlab_mex DESTINATION ${CMAKE_INSTALL_PREFIX})
