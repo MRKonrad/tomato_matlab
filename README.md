@@ -9,9 +9,9 @@ Running TOMATO (<https://github.com/MRKonrad/tomato>) in Matlab/Octave
 
 ## Current status
 *   current version depends on funny paths to the octave library provided by brew/apt/choco as in [octave/octave_find.cmake](octave/octave_find.cmake). It would be great to cut the dependency on packet managers and to have my own octave build.
-*   linux - works :)
-*   mac - works :)
-*   windows in appveyor - works :)
+*   linux - octave works :smiley:, octave mex with Tomato works :smiley:
+*   mac - octave works :smiley:, octave mex with Tomato works :smiley:
+*   windows in appveyor - octave works (with mingw) :smiley:, octave mex with Tomato does not work (mingw and vs dlls do not talk?) :confused:
 *   windows in travis - octave not working 
 ```
 The command "octave-cli ${TRAVIS_BUILD_DIR}/playground.m" exited with 127. 

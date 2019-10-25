@@ -20,7 +20,7 @@ build_script:
   - octave-cli playground.m
   - mkdir build
   - cd build
-  - cmake .. -DCMAKE_INSTALL_PREFIX=%APPVEYOR_BUILD_FOLDER%\install -DBUILD_SHARED_LIBS=ON -DBUILD_USING_OCTAVE=ON -DBUILD_USING_MATLAB=OFF
+  - cmake .. -G"MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=%APPVEYOR_BUILD_FOLDER%\install -DBUILD_SHARED_LIBS=ON -DBUILD_USING_OCTAVE=ON -DBUILD_USING_MATLAB=OFF
   - dir
   - cmake --build . --config %CONFIGURATION%
   - cmake --build . --config %CONFIGURATION% --target install
