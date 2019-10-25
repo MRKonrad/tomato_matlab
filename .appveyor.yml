@@ -33,7 +33,7 @@ test_script:
 after_test:
   - cd %APPVEYOR_BUILD_FOLDER%\install
   - 7z a tomato_matlab_Windows.zip * # zip
-  - mkdir %APPVEYOR_BUILD_FOLDER%/deployment
+  - mkdir %APPVEYOR_BUILD_FOLDER%\deployment
   - copy %APPVEYOR_BUILD_FOLDER%\install\tomato_matlab_Windows.zip %APPVEYOR_BUILD_FOLDER%\deployment\tomato_matlab_Windows_x64.zip
 
 artifacts:
