@@ -1,5 +1,3 @@
-function tomatoMatlabInstall 
-
 disp('tomatoMatlabInstall')
 
 addpath(genpath(fullfile(pwd,'mat')));
@@ -15,8 +13,6 @@ elseif isunix
     platform = 'linux';
 elseif ispc
     platform = 'Windows_x64';
-else
-    error('Your platform is not suported')
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
