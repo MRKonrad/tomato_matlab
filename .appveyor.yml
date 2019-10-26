@@ -35,10 +35,10 @@ test_script:
   - octave-cli tomatoMatlabInstall.m
   - dir
   - octave-cli tomatoMatlabExample1.m
-  - dir install
 
 ### linking mex with tomatoLib does not work, for now skipping the whole mex deployment
 #after_test:
+#   - dir install
 #  - cd %APPVEYOR_BUILD_FOLDER%\install
 #  - 7z a tomato_matlab_Windows.zip * # zip
 #  - mkdir %APPVEYOR_BUILD_FOLDER%\deployment

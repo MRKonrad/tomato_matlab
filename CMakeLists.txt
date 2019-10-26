@@ -33,6 +33,7 @@ if (BUILD_USING_OCTAVE)
     install(FILES ${CMAKE_BINARY_DIR}/playground_octave_mex.mex
             DESTINATION ${CMAKE_INSTALL_PREFIX}
             RENAME playground_octave_mex.${MATLAB_SUFFIX}) # the same file should be able to run with matlab
+    install(FILES ${TomatoLib} DESTINATION ${CMAKE_INSTALL_PREFIX})
 
 endif(BUILD_USING_OCTAVE)
 
@@ -62,5 +63,6 @@ if (BUILD_USING_MATLAB)
     install(FILES ${CMAKE_BINARY_DIR}/playground_matlab_mex.${MATLAB_SUFFIX}
             DESTINATION ${CMAKE_INSTALL_PREFIX}
             RENAME playground_matlab_mex.mex) # the same file should be able to run with octave
+    install(FILES ${TomatoLib} DESTINATION ${CMAKE_INSTALL_PREFIX})
 
 endif(BUILD_USING_MATLAB)
