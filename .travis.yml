@@ -17,8 +17,8 @@ matrix:
     - os: osx
       before_install:
         # otherwise there is an error when updating brew. TODO: remove it when brew fixes this issue
-#        - HOMEBREW_NO_AUTO_UPDATE=1 brew install octave > /dev/null
-        - brew install octave > /dev/null
+        - HOMEBREW_NO_AUTO_UPDATE=1 brew install octave > /dev/null
+#        - brew install octave > /dev/null
     - os: linux
 #      before_install:
 #        - dpkg -L octave
@@ -30,13 +30,6 @@ script:
   - cmake --build . --config RELEASE
   - cmake --build . --config RELEASE --target install
   - ls
-  # TODO: move it to cmake
-  - cd ${TRAVIS_BUILD_DIR}/mex ;
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then
-      otool -L playground_octave_mex.mex ;
-      install_name_tool -change @rpath/libTomatoLib.dylib @loader_path/libTomatoLib.dylib playground_octave_mex.mex ;
-      otool -L playground_octave_mex.mex ;
-    fi
   # Testing
   - cd ${TRAVIS_BUILD_DIR}
   - octave-cli tomatoMatlabInstall.m
@@ -53,7 +46,6 @@ after_success:
   - cp ${TRAVIS_BUILD_DIR}/mex/${name}.zip ${TRAVIS_BUILD_DIR}/deployment/
   - ls ${TRAVIS_BUILD_DIR}/deployment
   - ls ${TRAVIS_BUILD_DIR}/mex
-
   - cd ${TRAVIS_BUILD_DIR}
 
 deploy:

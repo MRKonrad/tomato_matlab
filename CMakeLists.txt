@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 2.8)
 project(Tomato_matlab)
 set(CMAKE_MACOSX_RPATH 1)
 
+# to see external shared library
 if (UNIX AND NOT APPLE)
     SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_RPATH}:$ORIGIN")
 elseif (APPLE)
