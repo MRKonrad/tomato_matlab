@@ -1,5 +1,5 @@
 tomatoMatlabSetup
 
-addpath(genpath('tests'))
+addpath(genpath(fullfile(pwd,'tests')))
 
 runtests_konrad('tests')

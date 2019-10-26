@@ -1,6 +1,6 @@
 function tomatoMatlabInstall 
 
-addpath(genpath('mat'));
+addpath(genpath(fullfile(pwd,'mat')));
 
 tomatoExeVersion = '0.4.1';
 
