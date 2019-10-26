@@ -6,9 +6,9 @@ addpath(genpath(fullfile(pwd,'mex')));
 
 % provide TomatoExe file path
 if ispc
-    setTomatoExePath('TomatoExe/TomatoExe.exe');
+    setTomatoExePath(fullfile('TomatoExe', 'TomatoExe.exe'));
 else
-    setTomatoExePath('TomatoExe/TomatoExe');
+    setTomatoExePath(fullfile('TomatoExe', 'TomatoExe'));
 end
 
 % add yamlmatlab to the matlab path
