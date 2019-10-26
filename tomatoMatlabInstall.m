@@ -1,10 +1,12 @@
 function tomatoMatlabInstall 
 
+disp('tomatoMatlabInstall')
+
 addpath(genpath(fullfile(pwd,'mat')));
 
 tomatoExeVersion = '0.4.1';
 
-tempDir = 'temp';
+tempDir = fullfile(pwd, 'temp');
 mkdir(tempDir)
 
 if ismac

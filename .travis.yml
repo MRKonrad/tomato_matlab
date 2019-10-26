@@ -29,6 +29,13 @@ script:
   - cmake --build . --config RELEASE
   - cmake --build . --config RELEASE --target install
   - ls
+  # TODO: move it to cmake
+  - cd ${TRAVIS_BUILD_DIR}/mex ;
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then
+    otool -L playground_octave_mex.mex ;
+    install_name_tool -change @rpath/libTomatoLib.dylib @loader_path/libTomatoLib.dylib playground_octave_mex.mex ;
+    otool -L playground_octave_mex.mex ;
+    fi
   # Testing
   - cd ${TRAVIS_BUILD_DIR}
   - octave-cli tomatoMatlabInstall.m
@@ -40,12 +47,6 @@ script:
 after_success:
   - export name=tomato_matlab_${TRAVIS_OS_NAME} # just a variable
   - cd ${TRAVIS_BUILD_DIR}/mex ;
-  # TODO: move it to cmake
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then
-      otool -L playground_octave_mex.mex ;
-      install_name_tool -change @rpath/libTomatoLib.dylib @loader_path/libTomatoLib.dylib playground_octave_mex.mex ;
-      otool -L playground_octave_mex.mex ;
-    fi
   - zip -r ${name}.zip *
   - mkdir ${TRAVIS_BUILD_DIR}/deployment
   - cp ${TRAVIS_BUILD_DIR}/mex/${name}.zip ${TRAVIS_BUILD_DIR}/deployment/
