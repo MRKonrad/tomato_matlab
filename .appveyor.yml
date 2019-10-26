@@ -12,7 +12,7 @@ configuration:
 
 build_script:
   - dir
-### linking mex with tomatoLib does not work, for now skipping the whole mex compilation
+### linking octave mex with tomatoLib does not work, for now skipping the whole mex compilation
 #  - echo %PATH%
 #  # remove sh.exe
 #  - set PATH=%PATH:C:\Program Files\Git\usr\bin;=%

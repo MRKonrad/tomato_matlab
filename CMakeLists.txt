@@ -1,3 +1,6 @@
+### Tomato_matlab
+### sample cmake command: cmake . -DCMAKE_BUILD_TYPE=DEBUG -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=../mex -DBUILD_USING_OCTAVE=OFF -DBUILD_USING_MATLAB=ON
+
 cmake_minimum_required(VERSION 2.8)
 
 project(Tomato_matlab)
@@ -37,9 +40,6 @@ if (BUILD_USING_OCTAVE)
 
     ### install
     install(TARGETS playground_octave_mex DESTINATION ${CMAKE_INSTALL_PREFIX})
-    install(FILES ${CMAKE_BINARY_DIR}/playground_octave_mex.mex
-            DESTINATION ${CMAKE_INSTALL_PREFIX}
-            RENAME playground_octave_mex.${MATLAB_SUFFIX}) # the same file should be able to run with matlab
     install(FILES ${TomatoLib} DESTINATION ${CMAKE_INSTALL_PREFIX})
 
 endif(BUILD_USING_OCTAVE)
@@ -57,7 +57,8 @@ if (BUILD_USING_MATLAB)
     MESSAGE(${Matlab_MEX_LIBRARY})
 
     ### add a target
-    # matlab_add_mex(NAME playground_matlab_mex mexcpp mexcpp/playground.cpp) # works well too
+    ## this way of dealing with matlab works well too:
+    # matlab_add_mex(NAME playground_matlab_mex mexcpp mexcpp/playground.cpp)
 
     add_library(playground_matlab_mex mexcpp/playground.cpp)
     set_target_properties(playground_matlab_mex PROPERTIES SUFFIX .${MATLAB_SUFFIX})
@@ -66,9 +67,6 @@ if (BUILD_USING_MATLAB)
 
     ### install
     install(TARGETS playground_matlab_mex DESTINATION ${CMAKE_INSTALL_PREFIX})
-    install(FILES ${CMAKE_BINARY_DIR}/playground_matlab_mex.${MATLAB_SUFFIX}
-            DESTINATION ${CMAKE_INSTALL_PREFIX}
-            RENAME playground_matlab_mex.mex) # the same file should be able to run with octave
     install(FILES ${TomatoLib} DESTINATION ${CMAKE_INSTALL_PREFIX})
 
 endif(BUILD_USING_MATLAB)

@@ -23,8 +23,7 @@ for k = 1:length(list)
     catch ex
         list = getGlobalTestFilesList();
         file = list(k).name;
-%         error('failed: %s\n', file);
-        error(ex)
+        error('failed: %s\n', file);
     end
 end
 
