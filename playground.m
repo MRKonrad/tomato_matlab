@@ -1,6 +1,6 @@
 % Tomato_playground
 %
-%   Author: Konrad Werys (konradwerys@gmail.com)
+%   just to see if matlab/octave is running correctly
 
 clear
 close all

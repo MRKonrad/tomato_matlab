@@ -2,9 +2,18 @@ function [ maps, inputImages ] = tomatoMatlabYaml( yamlpath )
 %RUNTOMATO Summary of this function goes here
 %   Detailed explanation goes here
 
+    maps = [];
+    inputImages = [];
+
     exepath = getTomatoExePath;
     system([exepath, ' ', yamlpath]);
 
+    % Octave does not handle Yaml parsing
+    if isOctave
+        warning('this functionality has not be implemented for Octave'); 
+        return
+    end
+    
     if nargout > 0
         maps = tomatoMatlabGetMapsFromYaml(yamlpath);
     end
