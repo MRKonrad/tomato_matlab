@@ -23,7 +23,7 @@ if (BUILD_USING_OCTAVE)
     include(cmake/octave_find.cmake)
 
     ### add a target
-    add_library(playground_octave_mex mex/playground.cpp)
+    add_library(playground_octave_mex mexcpp/playground.cpp)
     set_target_properties(playground_octave_mex PROPERTIES SUFFIX ".mex")
     set_target_properties(playground_octave_mex PROPERTIES PREFIX "")
     target_link_libraries(playground_octave_mex ${TomatoLib} ${OCTAVELIBS})
@@ -49,9 +49,9 @@ if (BUILD_USING_MATLAB)
     MESSAGE(${Matlab_MEX_LIBRARY})
 
     ### add a target
-    # matlab_add_mex(NAME playground_matlab_mex mex mex/playground.cpp) # works well too
+    # matlab_add_mex(NAME playground_matlab_mex mexcpp mexcpp/playground.cpp) # works well too
 
-    add_library(playground_matlab_mex mex/playground.cpp)
+    add_library(playground_matlab_mex mexcpp/playground.cpp)
     set_target_properties(playground_matlab_mex PROPERTIES SUFFIX .${MATLAB_SUFFIX})
     set_target_properties(playground_matlab_mex PROPERTIES PREFIX "")
 

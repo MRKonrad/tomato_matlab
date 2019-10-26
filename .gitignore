@@ -4,5 +4,6 @@ cmake-build-*
 
 TomatoLib
 TomatoExe
-mex
+mexcpp
 testData
+temp

@@ -1,5 +1,7 @@
 function INSTALL 
 
+addpath(genpath('mat'));
+
 tomatoExeVersion = '0.4.1';
 
 tempDir = 'temp';
@@ -21,9 +23,12 @@ tomatoExeZipUrl = ...
     ['https://github.com/MRKonrad/tomato/releases/download/v',...
      tomatoExeVersion, '/TomatoExe_v', tomatoExeVersion, '_', ...
      platform, '.zip'];
-
-% TODO: check if websave works in octave
-websave(fullfile(tempDir, 'tomatoExe.zip'), tomatoExeZipUrl);
+fprintf('Downloading %s\n', tomatoExeZipUrl);
+if isOctave
+    urlwrite(tomatoExeZipUrl, fullfile(tempDir, 'tomatoExe.zip'));
+else 
+    websave(fullfile(tempDir, 'tomatoExe.zip'), tomatoExeZipUrl);
+end
 unzip(fullfile(tempDir, 'tomatoExe.zip'), 'TomatoExe')
 delete(fullfile(tempDir, 'tomatoExe.zip'))
 
@@ -35,9 +40,13 @@ dataZipUrl = ...
     ['https://github.com/MRKonrad/tomato/releases/download/v',...
      tomatoExeVersion, '/testData.zip'];
 
-% TODO: check if websave works in octave
-websave(fullfile(tempDir, 'testData.zip'), dataZipUrl);
-unzip(fullfile(tempDir, 'testData.zip'), 'data')
+fprintf('Downloading %s\n', dataZipUrl);
+if isOctave
+    urlwrite(dataZipUrl, fullfile(tempDir, 'testData.zip'));
+else
+    websave(fullfile(tempDir, 'testData.zip'), dataZipUrl);
+end
+unzip(fullfile(tempDir, 'testData.zip'), 'testData')
 delete(fullfile(tempDir, 'testData.zip'))
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -50,7 +59,7 @@ delete(fullfile(tempDir, 'testData.zip'))
 % 
 % % TODO: check if websave works in octave
 % websave(fullfile(tempDir, 'tomatoMex.zip'), tomatoMexZipUrl);
-% unzip(fullfile(tempDir, 'tomatoMex.zip'), 'mex')
+% unzip(fullfile(tempDir, 'tomatoMex.zip'), 'mexcpp')
 % delete(fullfile(tempDir, 'tomatoMex.zip'))
 
 % cleanup
