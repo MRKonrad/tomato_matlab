@@ -2,6 +2,7 @@
 
 % provide TomatoMatlabToolbox matlab path
 addpath(genpath(fullfile(pwd,'mat')));
+addpath(genpath(fullfile(pwd,'mex')));
 
 % provide TomatoExe file path
 if ispc
