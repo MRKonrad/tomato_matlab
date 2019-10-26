@@ -32,6 +32,7 @@ script:
   # Testing
   - cd ${TRAVIS_BUILD_DIR}
   - octave-cli tomatoMatlabInstall.m
+  - ls
   - octave-cli tomatoMatlabExample1.m
   - octave-cli tomatoMatlabRunAllTests.m
   - ls mex

@@ -33,6 +33,7 @@ build_script:
 test_script:
   - cd %APPVEYOR_BUILD_FOLDER%
   - octave-cli tomatoMatlabInstall.m
+  - dir
   - octave-cli tomatoMatlabExample1.m
   - dir install
 

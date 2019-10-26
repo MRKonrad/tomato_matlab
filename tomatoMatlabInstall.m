@@ -1,4 +1,4 @@
-function INSTALL 
+function tomatoMatlabInstall 
 
 addpath(genpath('mat'));
 

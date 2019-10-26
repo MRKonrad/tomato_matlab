@@ -1,4 +1,4 @@
-SETUP
+tomatoMatlabSetup
 
 addpath(genpath('tests'))
 
