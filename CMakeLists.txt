@@ -8,8 +8,8 @@ include(cmake/matlab_suffix_configuration.cmake)
 
 # an external library
 include(cmake/tomato_download.cmake)
-find_library(TomatoLib NAMES TomatoLib HINTS ${PROJECT_SOURCE_DIR}/Tomato/lib_shared)
-include_directories(${PROJECT_SOURCE_DIR}/Tomato/include)
+find_library(TomatoLib NAMES TomatoLib HINTS ${PROJECT_SOURCE_DIR}/TomatoLib/lib_shared)
+include_directories(${PROJECT_SOURCE_DIR}/TomatoLib/include)
 message(STATUS ${TomatoLib})
 
 ##############

@@ -11,44 +11,48 @@ configuration:
   - Release
 
 build_script:
-  - echo %PATH%
-  # remove sh.exe
-  - set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
-  - # add mingw https://www.appveyor.com/docs/windows-images-software/#mingw-msys-cygwin
-  - set PATH=%PATH%;C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin
-  - echo %PATH%
-  - octave-cli playground.m
-  - mkdir build
-  - cd build
-  - cmake .. -G"MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=%APPVEYOR_BUILD_FOLDER%\install -DBUILD_SHARED_LIBS=ON -DBUILD_USING_OCTAVE=ON -DBUILD_USING_MATLAB=OFF
   - dir
-  - cmake --build . --config %CONFIGURATION%
-  - cmake --build . --config %CONFIGURATION% --target install
-  - dir
-  - # add sh.exe. TODO: is it needed?
-  - set PATH=%PATH%;C:\Program Files\Git\usr\bin
+### linking mex with tomatoLib does not work, for now skipping the whole mex compilation
+#  - echo %PATH%
+#  # remove sh.exe
+#  - set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
+#  - # add mingw https://www.appveyor.com/docs/windows-images-software/#mingw-msys-cygwin
+#  - set PATH=%PATH%;C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin
+#  - echo %PATH%
+#  - octave-cli playground.m
+#  - mkdir build
+#  - cd build
+#  - cmake .. -G"MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=%APPVEYOR_BUILD_FOLDER%\install -DBUILD_SHARED_LIBS=ON -DBUILD_USING_OCTAVE=ON -DBUILD_USING_MATLAB=OFF
+#  - dir
+#  - cmake --build . --config %CONFIGURATION%
+#  - cmake --build . --config %CONFIGURATION% --target install
+#  - dir
+#  - # add sh.exe. TODO: is it needed?
+#  - set PATH=%PATH%;C:\Program Files\Git\usr\bin
 
 test_script:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - octave-cli playground_mex.m
+  - octave-cli INSTALL.m
+  - octave-cli tomatoMatlabExample.m
   - dir install
 
-after_test:
-  - cd %APPVEYOR_BUILD_FOLDER%\install
-  - 7z a tomato_matlab_Windows.zip * # zip
-  - mkdir %APPVEYOR_BUILD_FOLDER%\deployment
-  - copy %APPVEYOR_BUILD_FOLDER%\install\tomato_matlab_Windows.zip %APPVEYOR_BUILD_FOLDER%\deployment\tomato_matlab_Windows_%PLATFORM%.zip
-
-artifacts:
-  - path: deployment\*.*
-
-deploy:
-  provider: GitHub
-  auth_token:
-    secure: Nmbbo4JCoK5AuN1ugWmE/c8/BAXlpz8Lb7piWDcAAWnT/GFa7fwL20GbXyU9AZSn
-  draft: false
-  prerelease: false
-  force_update: true
-  on:
-    appveyor_repo_tag: true        # deploy on tag push only
-    configuration: Release
+### linking mex with tomatoLib does not work, for now skipping the whole mex deployment
+#after_test:
+#  - cd %APPVEYOR_BUILD_FOLDER%\install
+#  - 7z a tomato_matlab_Windows.zip * # zip
+#  - mkdir %APPVEYOR_BUILD_FOLDER%\deployment
+#  - copy %APPVEYOR_BUILD_FOLDER%\install\tomato_matlab_Windows.zip %APPVEYOR_BUILD_FOLDER%\deployment\tomato_matlab_Windows_%PLATFORM%.zip
+#
+#artifacts:
+#  - path: deployment\*.*
+#
+#deploy:
+#  provider: GitHub
+#  auth_token:
+#    secure: Nmbbo4JCoK5AuN1ugWmE/c8/BAXlpz8Lb7piWDcAAWnT/GFa7fwL20GbXyU9AZSn
+#  draft: false
+#  prerelease: false
+#  force_update: true
+#  on:
+#    appveyor_repo_tag: true        # deploy on tag push only
+#    configuration: Release

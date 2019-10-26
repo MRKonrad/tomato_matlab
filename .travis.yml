@@ -23,22 +23,22 @@ matrix:
 #        - dpkg -L octave
 
 script:
-  - octave-cli playground.m
   - mkdir build
   - cd build
-  - cmake .. -DCMAKE_INSTALL_PREFIX=${TRAVIS_BUILD_DIR}/install -DBUILD_SHARED_LIBS=ON -DCMAKE_VERBOSE_MAKEFILE=ON -DBUILD_USING_OCTAVE=ON -DBUILD_USING_MATLAB=OFF
+  - cmake .. -DCMAKE_INSTALL_PREFIX=${TRAVIS_BUILD_DIR}/mex -DBUILD_SHARED_LIBS=ON -DCMAKE_VERBOSE_MAKEFILE=ON -DBUILD_USING_OCTAVE=ON -DBUILD_USING_MATLAB=OFF
   - cmake --build . --config RELEASE
   - cmake --build . --config RELEASE --target install
   - ls
   # Testing
-  - octave --no-gui --eval playground_octave_mex # octave-cli not working if mex is passed as an argument
   - cd ${TRAVIS_BUILD_DIR}
-  - octave-cli playground_mex.m
-  - ls install
+  - octave-cli INSTALL.m
+  - octave-cli tomatoMatlabExample.m
+  - octave-cli RUNALLTESTS.m
+  - ls mex
 
 after_success:
   - export name=tomato_matlab_${TRAVIS_OS_NAME} # just a variable
-  - cd ${TRAVIS_BUILD_DIR}/install ;
+  - cd ${TRAVIS_BUILD_DIR}/mex ;
   # TODO: move it to cmake
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then
       otool -L playground_octave_mex.mex ;
@@ -47,9 +47,9 @@ after_success:
     fi
   - zip -r ${name}.zip *
   - mkdir ${TRAVIS_BUILD_DIR}/deployment
-  - cp ${TRAVIS_BUILD_DIR}/install/${name}.zip ${TRAVIS_BUILD_DIR}/deployment/
+  - cp ${TRAVIS_BUILD_DIR}/mex/${name}.zip ${TRAVIS_BUILD_DIR}/deployment/
   - ls ${TRAVIS_BUILD_DIR}/deployment
-  - ls ${TRAVIS_BUILD_DIR}/install
+  - ls ${TRAVIS_BUILD_DIR}/mex
 
   - cd ${TRAVIS_BUILD_DIR}
 

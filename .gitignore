@@ -1,4 +1,8 @@
 .DS_Store
-Tomato
 cmake-build-*
 .idea
+
+TomatoLib
+TomatoExe
+mex
+testData

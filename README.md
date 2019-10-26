@@ -8,11 +8,11 @@ Running TOMATO (<https://github.com/MRKonrad/tomato>) in Matlab/Octave
 |[![Build status](https://ci.appveyor.com/api/projects/status/md078r5kfj92y0f2?svg=true)](https://ci.appveyor.com/project/MRKonrad/tomato-matlab) | Windows build (Appveyor)|
 
 ## Current status
-*   current version depends on funny paths to the octave library provided by brew/apt/choco as in [octave/octave_find.cmake](octave/octave_find.cmake). It would be great to cut the dependency on packet managers and to have my own octave build.
+*   current version depends on funny paths to the octave library provided by brew/apt/choco as in [cmake/octave_find.cmake](cmake/octave_find.cmake). It would be great to cut the dependency on packet managers and to have my own octave build.
 *   linux - octave works :smiley:, octave mex with Tomato works :smiley:
 *   mac - octave works :smiley:, octave mex with Tomato works :smiley:
 *   windows in appveyor - octave works (with mingw) :smiley:, octave mex with Tomato does not work (mingw and vs dlls do not talk?) :confused:
-*   windows in travis - octave not working 
+*   windows in travis - octave not working :confused:
 ```
 The command "octave-cli ${TRAVIS_BUILD_DIR}/playground.m" exited with 127. 
 Cannot find file at '..\lib\octave.portable\tools\octave\bin\octave-cli.exe' (C:\ProgramData\chocolatey\lib\octave.portable\tools\octave\bin\octave-cli.exe). This usually indicates a missing or moved file.
