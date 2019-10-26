@@ -17,8 +17,8 @@ matrix:
     - os: osx
       before_install:
         # otherwise there is an error when updating brew. TODO: remove it when brew fixes this issue
-        - HOMEBREW_NO_AUTO_UPDATE=1 brew install octave > /dev/null
-#        - brew install octave > /dev/null
+#        - HOMEBREW_NO_AUTO_UPDATE=1 brew install octave > /dev/null
+        - brew install octave > /dev/null
     - os: linux
 #      before_install:
 #        - dpkg -L octave

@@ -3,6 +3,12 @@ cmake_minimum_required(VERSION 2.8)
 project(Tomato_matlab)
 set(CMAKE_MACOSX_RPATH 1)
 
+if (UNIX AND NOT APPLE)
+    SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_RPATH}:$ORIGIN")
+elseif (APPLE)
+    SET(CMAKE_INSTALL_RPATH "@loader_path")
+endif()
+
 # to get correct file sufixes (mexmaci64 etc)
 include(cmake/matlab_suffix_configuration.cmake)
 
@@ -26,7 +32,6 @@ if (BUILD_USING_OCTAVE)
     add_library(playground_octave_mex mexcpp/playground.cpp)
     set_target_properties(playground_octave_mex PROPERTIES SUFFIX ".mex")
     set_target_properties(playground_octave_mex PROPERTIES PREFIX "")
-    set_target_properties(playground_octave_mex PROPERTIES INSTALL_RPATH “@loader_path”)
     target_link_libraries(playground_octave_mex ${TomatoLib} ${OCTAVELIBS})
 
     ### install
@@ -56,8 +61,6 @@ if (BUILD_USING_MATLAB)
     add_library(playground_matlab_mex mexcpp/playground.cpp)
     set_target_properties(playground_matlab_mex PROPERTIES SUFFIX .${MATLAB_SUFFIX})
     set_target_properties(playground_matlab_mex PROPERTIES PREFIX "")
-    set_target_properties(playground_matlab_mex PROPERTIES INSTALL_RPATH “@loader_path”)
-
     target_link_libraries(playground_matlab_mex ${TomatoLib} ${Matlab_MEX_LIBRARY})
 
     ### install
