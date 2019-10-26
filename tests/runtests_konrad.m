@@ -2,6 +2,15 @@ function runtests_konrad( folder )
 %RUNTESTS_KONRAD alternative basic runtests
 
 list = dir(fullfile(folder, '*Test.m'));
+
+if length(list) < 1, warning(['No *Test.m files in ', folder]), return, end
+
+if ~isfield(list,'folder')
+    for i = 1:length(list)
+        list(i).folder = folder;
+    end
+end
+
 setGlobalTestFilesList(list)
 
 for k = 1:length(list)
