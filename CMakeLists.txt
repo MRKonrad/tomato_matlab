@@ -54,19 +54,26 @@ if (BUILD_USING_MATLAB)
     ### configure matlab paths
     find_package(MATLAB REQUIRED)
     include_directories(${Matlab_INCLUDE_DIRS})
-    MESSAGE(${Matlab_MEX_LIBRARY})
+    MESSAGE("Matlab_LIBRARIES:" ${Matlab_LIBRARIES})
 
     ### add a target
     ## this way of dealing with matlab works well too:
     # matlab_add_mex(NAME playground_matlab_mex mexcpp mexcpp/playground.cpp)
+    # target_link_libraries(playground_matlab_mex ${TomatoLib} ${Matlab_LIBRARIES})
 
     add_library(playground_matlab_mex mexcpp/playground.cpp)
     set_target_properties(playground_matlab_mex PROPERTIES SUFFIX .${MATLAB_SUFFIX})
     set_target_properties(playground_matlab_mex PROPERTIES PREFIX "")
-    target_link_libraries(playground_matlab_mex ${TomatoLib} ${Matlab_MEX_LIBRARY})
+    target_link_libraries(playground_matlab_mex ${TomatoLib} ${Matlab_LIBRARIES})
 
     ### install
     install(TARGETS playground_matlab_mex DESTINATION ${CMAKE_INSTALL_PREFIX})
     install(FILES ${TomatoLib} DESTINATION ${CMAKE_INSTALL_PREFIX})
 
 endif(BUILD_USING_MATLAB)
+
+#get_cmake_property(_variableNames VARIABLES)
+#list (SORT _variableNames)
+#foreach (_variableName ${_variableNames})
+#    message(STATUS "${_variableName}=${${_variableName}}")
+#endforeach()

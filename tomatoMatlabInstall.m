@@ -2,7 +2,7 @@ disp('tomatoMatlabInstall')
 
 addpath(genpath(fullfile(pwd,'mat')));
 
-tomatoExeVersion = '0.4.1';
+tomatoExeVersion = '0.4.2';
 
 tempDir = fullfile(pwd, 'temp');
 mkdir(tempDir)

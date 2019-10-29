@@ -45,8 +45,9 @@ function [maps, clut] = tomatoMatlabGetMapsFromYaml(yamlpath)
     YamlStruct = yaml.ReadYaml(outputyamlpath);
     if isfield(YamlStruct, 'dir_output_map') && ~isempty(YamlStruct.dir_output_map)
         [maps.T1, maps.T1clut] = getImagesFromDir(YamlStruct.dir_output_map);
-    elseif isfield(YamlStruct, 'dir_output_fitparams') && ~isempty(YamlStruct.dir_output_fitparams) 
-        maps.fitparams = getImagesFromDir(YamlStruct.dir_output_fitparams);
+        if isfield(YamlStruct, 'dir_output_fitparams') && ~isempty(YamlStruct.dir_output_fitparams) 
+            maps.fitparams = getImagesFromDir(YamlStruct.dir_output_fitparams);
+        end
     end
 end
 
