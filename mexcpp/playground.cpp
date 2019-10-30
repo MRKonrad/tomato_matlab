@@ -11,8 +11,22 @@ mexFunction (int nlhs, mxArray *plhs[],
 {
     mexPrintf ("I have %d inputs and %d outputs\n", nrhs, nlhs);
 
-//    Ox::CalculatorT1Results<double> results;
-//    results.disp();
+    /* Check for proper number of arguments */
+    if (
+            nrhs != 1
+            || nlhs != 0
+            || !mxIsStruct(prhs[0]))
+    {
+        Ox::CalculatorT1Results<double> results;
+        results.disp();
+
+        Ox::CalculatorT1Molli<double> calculator;
+        calculator.setNSamples(5);
+        calculator.disp();
+
+        return;
+        mexErrMsgIdAndTxt("tomato_matlab:tomato_matlab:nargin","tomato_matlab");
+    }
 
     /* get input arguments */
     int nfields = mxGetNumberOfFields(prhs[0]);
@@ -30,7 +44,6 @@ mexFunction (int nlhs, mxArray *plhs[],
         mexPrintf("%f\n", *tmp2);
     }
 
-
     // read cell
     mxArray *tmp = mxGetField(prhs[0], 0, "files_magnitude");
     const mwSize *dims = mxGetDimensions(tmp);
@@ -39,7 +52,4 @@ mexFunction (int nlhs, mxArray *plhs[],
         mexPrintf("The content at %d is %s\n", jcell, mystring);
     }
 
-//    Ox::CalculatorT1Molli<double> calculator;
-//    calculator.setNSamples(5);
-//    calculator.disp();
 }
