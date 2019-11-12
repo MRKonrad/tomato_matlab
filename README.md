@@ -7,6 +7,11 @@ Running TOMATO (<https://github.com/MRKonrad/tomato>) in Matlab/Octave
 |[![Build Status](https://travis-ci.com/MRKonrad/tomato_matlab.svg?branch=master)](https://travis-ci.com/MRKonrad/tomato_matlab) | Mac and Linux build (Travis) |  
 |[![Build status](https://ci.appveyor.com/api/projects/status/md078r5kfj92y0f2?svg=true)](https://ci.appveyor.com/project/MRKonrad/tomato-matlab) | Windows build (Appveyor)|
 
+
+## TODO
+
+*   cmake script to download the data
+
 ## Limitations
 
 *   [yamlmatlab](https://github.com/ewiger/yamlmatlab.git) does not work with octave. Hence no yaml modifications within the code are possible.
@@ -27,7 +32,7 @@ Running TOMATO (<https://github.com/MRKonrad/tomato>) in Matlab/Octave
 
 *   windows in travis - octave not working :confused:
 ```
-The command "octave-cli ${TRAVIS_BUILD_DIR}/playground.m" exited with 127. 
+The command "octave-cli ${TRAVIS_BUILD_DIR}/playground.m" exited with 127.
 Cannot find file at '..\lib\octave.portable\tools\octave\bin\octave-cli.exe' (C:\ProgramData\chocolatey\lib\octave.portable\tools\octave\bin\octave-cli.exe). This usually indicates a missing or moved file.
 ```
 
@@ -42,9 +47,9 @@ dlopen(/Users/kwerys/Code/tomato_matlab/cmake-build-debug/playground_mex.mexmaci
   Reason: Incompatible library version: liboctinterp.7.dylib requires version 24.0.0 or later, but libfreetype.6.dylib provides version
   18.0.0.
 ```
-*   Error 1 explanation: matlab has its own versions of libraries, for example 
+*   Error 1 explanation: matlab has its own versions of libraries, for example
 ```command
-> otool -L /Applications/MATLAB_R2016b.app/bin/maci64/libfreetype.6.dylib 
+> otool -L /Applications/MATLAB_R2016b.app/bin/maci64/libfreetype.6.dylib
 
 /Applications/MATLAB_R2016b.app/bin/maci64/libfreetype.6.dylib:
 	@rpath/libfreetype.6.dylib (compatibility version 18.0.0, current version 18.1.0)
@@ -52,7 +57,7 @@ dlopen(/Users/kwerys/Code/tomato_matlab/cmake-build-debug/playground_mex.mexmaci
 	/usr/lib/libbz2.1.0.dylib (compatibility version 1.0.0, current version 1.0.5)
 	/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1197.1.1)
 ```
-*   Error 1 possible solutions: 
+*   Error 1 possible solutions:
   *   use newer matlab version
   *   use older octave versions
 
