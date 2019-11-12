@@ -24,6 +24,7 @@ for k = 1:length(list)
     catch ex
         list = getGlobalTestFilesList();
         file = list(k).name;
+        disp(ex)
         error('### Failed: %s\n', file);
     end
 end
