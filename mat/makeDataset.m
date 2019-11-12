@@ -7,13 +7,18 @@ end
 
 mask = makeHeartMask(mysize);
 
-images = zeros(mysize(2), mysize(1), 1, length(t));
+images.raw = zeros(mysize(2), mysize(1), 1, length(t));
 for t = 1:length(t)
     for itissue = 1:length(relaxationTime)
-        temp = images(:,:,1,t);
+        temp = images.raw(:,:,1,t);
         temp(mask == itissue) = signal(t,itissue);
-        images(:,:,1,t) = temp;
+        images.raw(:,:,1,t) = temp;
     end
+end
+
+images.map = zeros(mysize(2), mysize(1));
+for itissue = 1:length(relaxationTime)
+    images.map(mask == itissue) = relaxationTime(itissue);
 end
 
 end

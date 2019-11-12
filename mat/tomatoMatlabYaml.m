@@ -93,6 +93,7 @@ end
 
 function [images, clut] = getImagesFromDir(mydir)
     images = [];
+    clut = [];
     files = dir(mydir);
     files = files(~ismember({files.name},{'.','..', 'tomato_output_config.yaml'}));
     nFiles = 0;

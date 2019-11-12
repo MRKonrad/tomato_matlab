@@ -1,27 +1,33 @@
-function saveImages2Dicom(images, saveDir, TE, TR, TI)
+function saveimages2Dicom(images, saveDir, TE, TR, TI)
 
 if ~exist('TE','var') || isempty(TE)
-    TE = ones(1, size(images,4));
+    TE = ones(1, size(images.raw,4));
 end
 
 if ~exist('TR','var') || isempty(TR)
-    TR = ones(1, size(images,4));
+    TR = ones(1, size(images.raw,4));
 end
 
 if ~exist('TI','var') || isempty(TI)
-    TI = ones(1, size(images,4));
+    TI = ones(1, size(images.raw,4));
 end
 
-mkdir(saveDir)
-filePathRoot = fullfile(saveDir, 'image');
+saveDirRaw = fullfile(saveDir, 'raw');
+saveDirMap = fullfile(saveDir, 'map');
+
+mkdir(saveDirRaw)
+mkdir(saveDirMap)
+
+filePathRootRaw = fullfile(saveDirRaw, 'image');
+filePathRootMap = fullfile(saveDirMap, 'map');
 
 StudyInstanceUID = '';
 SeriesInstanceUID = '';
 
-for i = 1:size(images,4)
-    filename = [filePathRoot, sprintf('%04.f', i), '.dcm'];
-    myimage = uint16(images(:,:,1,i));
-    dicomwrite(images(:,:,1,i), filename, 'IOD', 'MR Image Storage');
+for i = 1:size(images.raw,4)
+    filename = [filePathRootRaw, sprintf('%04.f', i), '.dcm'];
+    myimage = uint16(images.raw(:,:,1,i));
+    dicomwrite(images.raw(:,:,1,i), filename, 'IOD', 'MR Image Storage');
     dicomTags = dicominfo(filename);
     
     dicomTags.EchoTime = TE(i);
@@ -39,6 +45,26 @@ for i = 1:size(images,4)
         dicomTags.SeriesInstanceUID = SeriesInstanceUID;
     end
     dicomwrite(myimage, filename, dicomTags, 'CreateMode', 'copy', 'IOD', 'MR Image Storage');
+end
+
+
+SeriesInstanceUID = '';
+
+for i = 1:size(images.map,4)
+    filename = [filePathRootMap, sprintf('%04.f', i), '.dcm'];
+    myimage = uint16(images.map(:,:,1,i));
+    dicomwrite(images.map(:,:,1,i), filename, 'IOD', 'Secondary Capture Image Storage');
+    dicomTags = dicominfo(filename);
+    
+    dicomTags.LargestImagePixelValue = max(myimage(:));
+    dicomTags.StudyInstanceUID = StudyInstanceUID;
+    
+    if isempty(SeriesInstanceUID)
+        SeriesInstanceUID = dicomTags.SeriesInstanceUID;
+    else
+        dicomTags.SeriesInstanceUID = SeriesInstanceUID;
+    end
+    dicomwrite(myimage, filename, dicomTags, 'CreateMode', 'copy', 'IOD', 'Secondary Capture Image Storage');
 end
 
 end
