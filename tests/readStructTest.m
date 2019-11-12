@@ -1,6 +1,7 @@
 %% test passing a struct should not crash
 pwd
 
+
 if isOctave
     yamlFilePath = '../testData/tomatoConfig_Shmolli_inputFilePaths.yaml';
     mystruct = yaml.ReadYaml(yamlFilePath)
