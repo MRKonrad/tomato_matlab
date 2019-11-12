@@ -1,10 +1,12 @@
 %% test passing a struct should not crash
 pwd
-yamlFilePath = 'testData/tomatoConfig_Shmolli_inputFilePaths.yaml';
-mystruct = yaml.ReadYaml(yamlFilePath)
 
 if isOctave
+    yamlFilePath = '../testData/tomatoConfig_Shmolli_inputFilePaths.yaml';
+    mystruct = yaml.ReadYaml(yamlFilePath)
     playground_octave_mex(mystruct);
 else
+    yamlFilePath = 'testData/tomatoConfig_Shmolli_inputFilePaths.yaml';
+    mystruct = yaml.ReadYaml(yamlFilePath);
     playground_matlab_mex(mystruct);
 end

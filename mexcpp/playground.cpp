@@ -1,7 +1,6 @@
 #include "mex.h"
 #include "string.h"
 
-#define MAXCHARS 80   /* max length of string contained in each field */
 #include "OxCalculatorT1Molli.h"
 #include "OxCalculatorResults.h"
 
@@ -25,7 +24,8 @@ mexFunction (int nlhs, mxArray *plhs[],
         calculator.disp();
 
         return;
-        mexErrMsgIdAndTxt("tomato_matlab:tomato_matlab:nargin","tomato_matlab");
+        
+        mexErrMsgIdAndTxt("tomato_matlab:tomato_matlab:nargin", "tomato_matlab");
     }
 
     /* get input arguments */

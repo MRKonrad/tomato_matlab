@@ -25,7 +25,9 @@ StudyInstanceUID = '';
 SeriesInstanceUID = '';
 
 for i = 1:size(images.raw,4)
-    filename = [filePathRootRaw, sprintf('%04.f', i), '.dcm'];
+    % on purpose reverse order
+    filenumber = size(images.raw,4)-i;
+    filename = [filePathRootRaw, sprintf('%04.f', filenumber), '.dcm'];
     myimage = uint16(images.raw(:,:,1,i));
     dicomwrite(images.raw(:,:,1,i), filename, 'IOD', 'MR Image Storage');
     dicomTags = dicominfo(filename);

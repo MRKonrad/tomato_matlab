@@ -18,12 +18,13 @@ for k = 1:length(list)
         list = getGlobalTestFilesList();
         file = list(k).name;
         folder = list(k).folder;
+        fprintf('### Running %s\n', file);
         run(fullfile(folder, file));
-        fprintf('.')
+        fprintf('### Tests ok in %s\n', file);
     catch ex
         list = getGlobalTestFilesList();
         file = list(k).name;
-        error('failed: %s\n', file);
+        error('### Failed: %s\n', file);
     end
 end
 
